@@ -14,6 +14,12 @@
 		CA31DD6023C74544007AF2A9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA31DD5F23C74544007AF2A9 /* main.m */; };
 		CA31DD6B23C74544007AF2A9 /* CGWindowListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA31DD6A23C74544007AF2A9 /* CGWindowListTests.m */; };
 		CA31DD7623C74544007AF2A9 /* CGWindowListUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA31DD7523C74544007AF2A9 /* CGWindowListUITests.m */; };
+		CA3474F623CC6701004EBEBF /* AppSelecotorController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3474F423CC6701004EBEBF /* AppSelecotorController.m */; };
+		CA3474F723CC6701004EBEBF /* AppSelecotorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3474F523CC6701004EBEBF /* AppSelecotorController.xib */; };
+		CA3474FC23CC698C004EBEBF /* AppCollectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3474FA23CC698C004EBEBF /* AppCollectionItem.m */; };
+		CA3474FD23CC698C004EBEBF /* AppCollectionItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3474FB23CC698C004EBEBF /* AppCollectionItem.xib */; };
+		CA34750123CC8577004EBEBF /* AppSelectorWndController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3474FF23CC8577004EBEBF /* AppSelectorWndController.m */; };
+		CA34750223CC8577004EBEBF /* AppSelectorWndController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA34750023CC8577004EBEBF /* AppSelectorWndController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +56,15 @@
 		CA31DD7123C74544007AF2A9 /* CGWindowListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CGWindowListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA31DD7523C74544007AF2A9 /* CGWindowListUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGWindowListUITests.m; sourceTree = "<group>"; };
 		CA31DD7723C74544007AF2A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA3474F323CC6701004EBEBF /* AppSelecotorController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppSelecotorController.h; sourceTree = "<group>"; };
+		CA3474F423CC6701004EBEBF /* AppSelecotorController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppSelecotorController.m; sourceTree = "<group>"; };
+		CA3474F523CC6701004EBEBF /* AppSelecotorController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppSelecotorController.xib; sourceTree = "<group>"; };
+		CA3474F923CC698C004EBEBF /* AppCollectionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppCollectionItem.h; sourceTree = "<group>"; };
+		CA3474FA23CC698C004EBEBF /* AppCollectionItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppCollectionItem.m; sourceTree = "<group>"; };
+		CA3474FB23CC698C004EBEBF /* AppCollectionItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppCollectionItem.xib; sourceTree = "<group>"; };
+		CA3474FE23CC8577004EBEBF /* AppSelectorWndController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppSelectorWndController.h; sourceTree = "<group>"; };
+		CA3474FF23CC8577004EBEBF /* AppSelectorWndController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppSelectorWndController.m; sourceTree = "<group>"; };
+		CA34750023CC8577004EBEBF /* AppSelectorWndController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppSelectorWndController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +115,7 @@
 		CA31DD5223C7453F007AF2A9 /* CGWindowList */ = {
 			isa = PBXGroup;
 			children = (
+				CA3474F823CC6960004EBEBF /* AppCollection */,
 				CA31DD5323C7453F007AF2A9 /* AppDelegate.h */,
 				CA31DD5423C7453F007AF2A9 /* AppDelegate.m */,
 				CA31DD5623C7453F007AF2A9 /* ViewController.h */,
@@ -129,6 +145,22 @@
 				CA31DD7723C74544007AF2A9 /* Info.plist */,
 			);
 			path = CGWindowListUITests;
+			sourceTree = "<group>";
+		};
+		CA3474F823CC6960004EBEBF /* AppCollection */ = {
+			isa = PBXGroup;
+			children = (
+				CA3474F323CC6701004EBEBF /* AppSelecotorController.h */,
+				CA3474F423CC6701004EBEBF /* AppSelecotorController.m */,
+				CA3474F523CC6701004EBEBF /* AppSelecotorController.xib */,
+				CA3474F923CC698C004EBEBF /* AppCollectionItem.h */,
+				CA3474FA23CC698C004EBEBF /* AppCollectionItem.m */,
+				CA3474FB23CC698C004EBEBF /* AppCollectionItem.xib */,
+				CA3474FE23CC8577004EBEBF /* AppSelectorWndController.h */,
+				CA3474FF23CC8577004EBEBF /* AppSelectorWndController.m */,
+				CA34750023CC8577004EBEBF /* AppSelectorWndController.xib */,
+			);
+			path = AppCollection;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +268,9 @@
 			files = (
 				CA31DD5A23C74544007AF2A9 /* Assets.xcassets in Resources */,
 				CA31DD5D23C74544007AF2A9 /* Main.storyboard in Resources */,
+				CA3474FD23CC698C004EBEBF /* AppCollectionItem.xib in Resources */,
+				CA34750223CC8577004EBEBF /* AppSelectorWndController.xib in Resources */,
+				CA3474F723CC6701004EBEBF /* AppSelecotorController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,8 +295,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA3474F623CC6701004EBEBF /* AppSelecotorController.m in Sources */,
 				CA31DD5823C7453F007AF2A9 /* ViewController.m in Sources */,
+				CA3474FC23CC698C004EBEBF /* AppCollectionItem.m in Sources */,
 				CA31DD6023C74544007AF2A9 /* main.m in Sources */,
+				CA34750123CC8577004EBEBF /* AppSelectorWndController.m in Sources */,
 				CA31DD5523C7453F007AF2A9 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,7 +398,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -413,7 +451,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
