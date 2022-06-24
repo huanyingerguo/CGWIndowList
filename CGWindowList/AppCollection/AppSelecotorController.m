@@ -60,10 +60,19 @@ static int kNumberOfItemsInSection = 5;
     }
     
     layout.totalCount = self.maxAppNumbers;
-    NSSize size = self.view.superview.frame.size;
     layout.minimumInteritemSpacing = 1;
     layout.minimumLineSpacing = 1;
-    layout.minimumItemSize = NSMakeSize((size.width - 2 * layout.minimumInteritemSpacing) / 3.0, (size.height - 2 * layout.minimumLineSpacing) / 4.0);
+    
+    if (layout.totalCount >= 5) { //每行至少3个。
+        NSSize size = self.view.superview.frame.size;
+        CGFloat width = 0;
+        CGFloat height = 0;
+        
+        width = (size.width - 2 * layout.minimumInteritemSpacing) / 3;
+        height = (size.height - 2 * layout.minimumLineSpacing) / 4; //除以3，最小高度会偏大，导致放不下
+        
+        layout.minimumItemSize = NSMakeSize(width, height);
+    }
 }
 
 #pragma mark- Capture Application Views

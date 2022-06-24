@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "AppSelectorWndController.h"
-#import "AppSelecotorController.h"
 
 @interface ViewController()
 @property (strong) AppSelectorWndController *selecotor;
