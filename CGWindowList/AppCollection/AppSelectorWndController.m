@@ -10,10 +10,13 @@
 #import "AppSelecotorController.h"
 #import <Masonry/Masonry.h>
 
-@interface AppSelectorWndController ()
+@interface AppSelectorWndController () <NSWindowDelegate>
 @property (strong) AppSelecotorController *seletor;
 @property (weak) IBOutlet NSView *collectionView;
 @property (weak) IBOutlet NSTextField *maxAppNums;
+@property (weak) IBOutlet NSButton *preButton;
+@property (weak) IBOutlet NSButton *nextButton;
+@property (weak) IBOutlet NSTextField *pageLabel;
 
 @end
 
@@ -38,14 +41,14 @@
 
 - (void)showWindow:(id)sender {
     [self.window center];
-    [self.seletor refreshViews:[self numbers]];
+    [self onOKClicked:nil];
 }
 
 - (void)setHostWindow:(NSWindow *)hostWindow {
     _hostWindow = hostWindow;
 }
 
-- (NSUInteger)numbers {
+- (int)numbers {
     int num = [self.maxAppNums.stringValue intValue];
     if (num <=0 ) {
         return INT_MAX;
@@ -70,6 +73,34 @@
 
 - (IBAction)onOKClicked:(id)sender {
     [self.seletor refreshViews:[self numbers]];
+    [self updateButtonState];
+}
+
+- (IBAction)onPrevClicked:(id)sender {
+    [self.seletor setPrePage];
+    [self updateButtonState];
+}
+
+- (IBAction)onNextClicked:(id)sender {
+    [self.seletor setNextPage];
+    [self updateButtonState];
+}
+
+- (void)updateButtonState {
+    NSUInteger pages = self.seletor.applications.count / 9;
+    self.pageLabel.stringValue = [NSString stringWithFormat:@"%ld/%ld", self.seletor.curPage, pages];
+    
+    if (self.seletor.curPage <= 0 ) {
+        self.preButton.enabled = NO;
+    } else {
+        self.preButton.enabled = YES;
+    }
+    
+    if (self.seletor.curPage > pages - 1 ) {
+        self.nextButton.enabled = NO;
+    } else {
+        self.nextButton.enabled = YES;
+    }
 }
 
 @end

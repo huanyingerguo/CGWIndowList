@@ -16,9 +16,8 @@ static int kNumberOfItemsInSection = 5;
 @property (weak) IBOutlet NSCollectionView *collectionView;
 @property (weak) IBOutlet NSScrollView *baseScrollView;
 
-@property (strong) NSMutableArray *applications;
+@property (strong) NSArray *_apps;
 @property (assign) NSUInteger maxAppNumbers;
-
 @end
 
 @implementation AppSelecotorController
@@ -33,11 +32,31 @@ static int kNumberOfItemsInSection = 5;
     [self initSubview];
 }
 
+- (void)setNextPage {
+    if ((self.curPage + 1) * 9 >= self.applications.count) {
+        return;
+    }
+    
+    self.curPage++;
+    [self reloadData];
+}
+
+- (void)setPrePage {
+    if (self.curPage <= 0) {
+        return;
+    }
+    
+    self.curPage--;
+    [self reloadData];
+}
+
 - (void)refreshViews:(int)numbers {
     self.maxAppNumbers = numbers;
     [self.applications removeAllObjects];
     [self getWindowsInfoOnScreens];
     if (@available(macOS 10.11, *)) {
+        self.curPage = 0;
+        self._apps = [self.applications copy]; //默认全部数据
         [self updateLayout];
         [self.collectionView reloadData];
     }
@@ -50,29 +69,6 @@ static int kNumberOfItemsInSection = 5;
     //[self.collectionView.enclosingScrollView setVerticalScroller:nil];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-}
-
-- (void)updateLayout {
-    CNCollectionViewLayout *layout = self.collectionView.collectionViewLayout;
-    if (!layout) {
-        layout = [[CNCollectionViewLayout alloc] init];
-        self.collectionView.collectionViewLayout = layout;
-    }
-    
-    layout.totalCount = self.maxAppNumbers;
-    layout.minimumInteritemSpacing = 1;
-    layout.minimumLineSpacing = 1;
-    
-    if (layout.totalCount >= 5) { //每行至少3个。
-        NSSize size = self.view.superview.frame.size;
-        CGFloat width = 0;
-        CGFloat height = 0;
-        
-        width = (size.width - 2 * layout.minimumInteritemSpacing) / 3;
-        height = (size.height - 2 * layout.minimumLineSpacing) / 4; //除以3，最小高度会偏大，导致放不下
-        
-        layout.minimumItemSize = NSMakeSize(width, height);
-    }
 }
 
 #pragma mark- Capture Application Views
@@ -127,13 +123,17 @@ static int kNumberOfItemsInSection = 5;
 }
 
 - (NSInteger)collectionView:(NSCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.applications.count;
+    NSUInteger count = self._apps.count;
+    if (count > 9) {
+        count = 9;
+    }
+    return count;
 }
 
 - (NSCollectionViewItem *)collectionView:(NSCollectionView *)collectionView itemForRepresentedObjectAtIndexPath:(NSIndexPath *)indexPath {
     if (@available(macOS 10.11, *)) {
         AppCollectionItem *item = [collectionView makeItemWithIdentifier:@"AppCollectionItem" forIndexPath:indexPath];
-        item.itemDetail = self.applications[indexPath.item];
+        item.itemDetail = self._apps[indexPath.item];
         return item;
     }
     
@@ -142,4 +142,70 @@ static int kNumberOfItemsInSection = 5;
 
 #pragma mark- NSCollectionViewDelegate
 
+#pragma mark- Util
+- (void)reloadData {
+    [self refreshApps];
+    [self updateLayout];
+    [self.collectionView reloadData];
+}
+
+- (void)refreshApps {
+    NSUInteger count = self.applications.count;
+    if (count <= 9) {
+        self._apps = [self.applications copy];
+        return;
+    }
+    
+    NSUInteger remainCnt = count - self.curPage *9;
+    NSUInteger length = 9;
+    if (remainCnt < 9) {
+        length = remainCnt;
+    }
+    
+    self._apps = [self.applications subarrayWithRange:NSMakeRange(self.curPage*9, length)];
+}
+
+- (void)updateLayout {
+    if (self.applications.count <= 9) {
+        CNCollectionViewLayout *layout = self.collectionView.collectionViewLayout;
+        if (!layout) {
+            layout = [[CNCollectionViewLayout alloc] init];
+            self.collectionView.collectionViewLayout = layout;
+        }
+                
+        layout.totalCount = self.maxAppNumbers;
+        layout.minimumInteritemSpacing = 1;
+        layout.minimumLineSpacing = 1;
+        
+        if (layout.totalCount >= 5) { //每行至少3个。
+            NSSize size = self.view.superview.frame.size;
+            CGFloat width = 0;
+            CGFloat height = 0;
+            
+            width = (size.width - 2 * layout.minimumInteritemSpacing) / 3;
+            height = (size.height - 2 * layout.minimumLineSpacing) / 4; //除以3，最小高度会偏大，导致放不下
+            
+            layout.minimumItemSize = NSMakeSize(width, height);
+        }
+    } else {
+        CNCollectionViewLayout *layout = self.collectionView.collectionViewLayout;
+        if (!layout) {
+            layout = [[CNCollectionViewLayout alloc] init];
+            self.collectionView.collectionViewLayout = layout;
+        }
+        
+        layout.totalCount = self.applications.count;
+        layout.maximumNumberOfRows = 3;
+        layout.maximumNumberOfColumns = 3;
+        
+        NSSize size = self.view.superview.frame.size;
+        CGFloat width = 0;
+        CGFloat height = 0;
+        
+        width = (size.width - 2 * layout.minimumInteritemSpacing) / 3;
+        height = (size.height - 2 * layout.minimumLineSpacing) / 3; //除以3，最小高度会偏大，导致放不下
+        
+        layout.minimumItemSize = NSMakeSize(width, height);
+    }
+}
 @end

@@ -10,6 +10,9 @@
             <connections>
                 <outlet property="collectionView" destination="DX8-pV-Nvc" id="ibT-l7-SES"/>
                 <outlet property="maxAppNums" destination="qvW-i3-wb3" id="vkh-cO-L4z"/>
+                <outlet property="nextButton" destination="Z9c-dd-b1I" id="mr0-jY-1jX"/>
+                <outlet property="pageLabel" destination="PHs-Jw-TcO" id="PcD-Xw-1xa"/>
+                <outlet property="preButton" destination="jUM-Cv-CaR" id="wIj-H5-FAm"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -59,24 +62,70 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z9c-dd-b1I">
+                        <rect key="frame" x="665" y="3" width="75" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="c1K-tK-bju"/>
+                            <constraint firstAttribute="width" constant="61" id="wJO-cj-kTM"/>
+                        </constraints>
+                        <buttonCell key="cell" type="push" title="下一页" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kz6-5L-yvy">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="onNextClicked:" target="-2" id="Ufu-4D-pqi"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jUM-Cv-CaR">
+                        <rect key="frame" x="527" y="3" width="75" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="4Zv-eB-XRr"/>
+                            <constraint firstAttribute="width" constant="61" id="OFQ-7o-4q3"/>
+                        </constraints>
+                        <buttonCell key="cell" type="push" title="前一页" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="K8q-OX-sQP">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="onPrevClicked:" target="-2" id="SQn-Uo-dji"/>
+                        </connections>
+                    </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PHs-Jw-TcO">
+                        <rect key="frame" x="618" y="12" width="44" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="htA-b4-7cj"/>
+                            <constraint firstAttribute="width" constant="40" id="xQK-Hd-5eZ"/>
+                        </constraints>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="Ymn-8q-eyw">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="DX8-pV-Nvc" secondAttribute="trailing" id="0av-GG-c54"/>
                     <constraint firstItem="hMT-TY-olT" firstAttribute="leading" secondItem="zh9-L2-EbR" secondAttribute="trailing" constant="47" id="4Uy-cm-yC9"/>
+                    <constraint firstItem="Z9c-dd-b1I" firstAttribute="centerY" secondItem="PHs-Jw-TcO" secondAttribute="centerY" id="AIP-VS-Ha0"/>
+                    <constraint firstItem="PHs-Jw-TcO" firstAttribute="leading" secondItem="jUM-Cv-CaR" secondAttribute="trailing" constant="25" id="Bv1-uY-Mmt"/>
+                    <constraint firstItem="zh9-L2-EbR" firstAttribute="centerY" secondItem="jUM-Cv-CaR" secondAttribute="centerY" id="GKh-lA-ZTd"/>
                     <constraint firstAttribute="bottom" secondItem="DX8-pV-Nvc" secondAttribute="bottom" constant="50" id="LKV-hE-7BR"/>
                     <constraint firstAttribute="trailing" secondItem="hMT-TY-olT" secondAttribute="trailing" constant="31" id="LoM-0D-eRw"/>
+                    <constraint firstItem="Z9c-dd-b1I" firstAttribute="centerY" secondItem="jUM-Cv-CaR" secondAttribute="centerY" id="PGS-D6-zYf"/>
                     <constraint firstItem="zh9-L2-EbR" firstAttribute="centerY" secondItem="qvW-i3-wb3" secondAttribute="centerY" id="QaR-LZ-cy4"/>
+                    <constraint firstItem="qvW-i3-wb3" firstAttribute="leading" secondItem="Z9c-dd-b1I" secondAttribute="trailing" constant="10" id="Sju-tl-5fR"/>
                     <constraint firstItem="DX8-pV-Nvc" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" id="T06-nj-M8f"/>
                     <constraint firstItem="zh9-L2-EbR" firstAttribute="top" secondItem="DX8-pV-Nvc" secondAttribute="bottom" constant="20" symbolic="YES" id="dXX-Zr-6ti"/>
                     <constraint firstItem="zh9-L2-EbR" firstAttribute="leading" secondItem="qvW-i3-wb3" secondAttribute="trailing" constant="5" id="ngb-KZ-wVW"/>
                     <constraint firstItem="hMT-TY-olT" firstAttribute="top" secondItem="DX8-pV-Nvc" secondAttribute="bottom" constant="20" symbolic="YES" id="rSg-yQ-nnr"/>
+                    <constraint firstItem="Z9c-dd-b1I" firstAttribute="leading" secondItem="jUM-Cv-CaR" secondAttribute="trailing" constant="77" id="vXY-dH-9RS"/>
                     <constraint firstItem="DX8-pV-Nvc" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="wza-GM-phR"/>
                 </constraints>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="188.5" y="169"/>
+            <point key="canvasLocation" x="188" y="169"/>
         </window>
     </objects>
 </document>
