@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,21 +19,19 @@
             <rect key="frame" x="0.0" y="0.0" width="579" height="314"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <scrollView wantsLayer="YES" fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMp-Lw-NLI">
-                    <rect key="frame" x="164" y="77" width="250" height="160"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <clipView key="contentView" ambiguous="YES" id="0nP-vN-Gej">
-                        <rect key="frame" x="1" y="1" width="248" height="158"/>
+                <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMp-Lw-NLI">
+                    <rect key="frame" x="0.0" y="0.0" width="579" height="314"/>
+                    <clipView key="contentView" id="0nP-vN-Gej">
+                        <rect key="frame" x="1" y="1" width="577" height="312"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView ambiguous="YES" id="L4k-gM-Lz0">
-                                <rect key="frame" x="0.0" y="0.0" width="248" height="158"/>
+                            <collectionView id="L4k-gM-Lz0">
+                                <rect key="frame" x="0.0" y="0.0" width="577" height="312"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <connections>
                                     <outlet property="dataSource" destination="-2" id="pvq-kR-fsy"/>
                                     <outlet property="delegate" destination="-2" id="ODO-7d-16F"/>
-                                    <outlet property="itemPrototype" destination="ScT-lr-BjT" id="nWs-vh-rjq"/>
                                 </connections>
                             </collectionView>
                         </subviews>
@@ -48,8 +46,14 @@
                     </scroller>
                 </scrollView>
             </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="gMp-Lw-NLI" secondAttribute="trailing" id="4zp-KG-tV4"/>
+                <constraint firstAttribute="bottom" secondItem="gMp-Lw-NLI" secondAttribute="bottom" id="IKs-2V-8jJ"/>
+                <constraint firstItem="gMp-Lw-NLI" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="MML-2e-TQ2"/>
+                <constraint firstItem="gMp-Lw-NLI" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="sQT-r8-952"/>
+            </constraints>
             <point key="canvasLocation" x="138.5" y="154"/>
         </customView>
-        <collectionViewItem id="ScT-lr-BjT"/>
+        <collectionViewItem id="ScT-lr-BjT" customClass="AppCollectionItem"/>
     </objects>
 </document>

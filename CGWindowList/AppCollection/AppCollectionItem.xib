@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,17 +16,15 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="80" height="100"/>
+            <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ygs-XS-aEN">
-                    <rect key="frame" x="10" y="28" width="60" height="60"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ygs-XS-aEN">
+                    <rect key="frame" x="0.0" y="20" width="300" height="180"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="ogS-gh-xV1"/>
                 </imageView>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L4n-Di-n1F">
-                    <rect key="frame" x="20" y="10" width="37" height="17"/>
-                    <autoresizingMask key="autoresizingMask"/>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="L4n-Di-n1F">
+                    <rect key="frame" x="-2" y="0.0" width="304" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="xKc-sK-TI3">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -34,6 +32,17 @@
                     </textFieldCell>
                 </textField>
             </subviews>
+            <constraints>
+                <constraint firstItem="L4n-Di-n1F" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="0PI-2V-etu"/>
+                <constraint firstAttribute="bottom" secondItem="L4n-Di-n1F" secondAttribute="bottom" id="3w5-fV-Qsx"/>
+                <constraint firstItem="ygs-XS-aEN" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="LG6-aL-EEB"/>
+                <constraint firstItem="ygs-XS-aEN" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="S3k-AD-t71"/>
+                <constraint firstItem="ygs-XS-aEN" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="Skj-VD-oRc"/>
+                <constraint firstAttribute="bottom" secondItem="ygs-XS-aEN" secondAttribute="bottom" constant="20" id="ecr-oj-NKP"/>
+                <constraint firstItem="ygs-XS-aEN" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="itS-ds-Jra"/>
+                <constraint firstAttribute="trailing" secondItem="ygs-XS-aEN" secondAttribute="trailing" id="wdV-q5-S4k"/>
+                <constraint firstAttribute="trailing" secondItem="L4n-Di-n1F" secondAttribute="trailing" id="zBw-MG-cRe"/>
+            </constraints>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="boolean" keyPath="" value="YES"/>
             </userDefinedRuntimeAttributes>

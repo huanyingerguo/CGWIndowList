@@ -8,6 +8,7 @@
 
 #import "AppSelecotorController.h"
 #import "AppCollectionItem.h"
+#import "CNCollectionViewLayout.h"
 
 static int kNumberOfItemsInSection = 5;
 
@@ -35,16 +36,34 @@ static int kNumberOfItemsInSection = 5;
     [self.applications removeAllObjects];
     [self getWindowsInfoOnScreens];
     if (@available(macOS 10.11, *)) {
+        [self updateLayout];
         [self.collectionView reloadData];
     }
 }
 
 -(void)initSubview{
     self.collectionView.enclosingScrollView.verticalScroller.hidden = YES;
-    [self.collectionView.enclosingScrollView setHorizontalScroller:nil];
-    [self.collectionView.enclosingScrollView setVerticalScroller:nil];
+    self.collectionView.enclosingScrollView.horizontalScroller.hidden = YES;
+    //[self.collectionView.enclosingScrollView setHorizontalScroller:nil];
+    //[self.collectionView.enclosingScrollView setVerticalScroller:nil];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
+}
+
+- (void)updateLayout {
+    CNCollectionViewLayout *layout = self.collectionView.collectionViewLayout;
+    if (!layout) {
+        layout = [[CNCollectionViewLayout alloc] init];
+    }
+    
+    layout.maximumNumberOfRows = 3;
+    //layout.maximumNumberOfColumns = 3;
+    
+    NSSize size = self.view.superview.frame.size;
+    layout.minimumInteritemSpacing = 1;
+    layout.minimumLineSpacing = 1;
+    layout.minimumItemSize = NSMakeSize((size.width - 2*layout.minimumInteritemSpacing) / 3.0, (size.height - 2 * layout.minimumLineSpacing) / 3.0);
+    self.collectionView.collectionViewLayout = layout;
 }
 
 #pragma mark- Capture Application Views
@@ -90,8 +109,12 @@ static int kNumberOfItemsInSection = 5;
 }
 
 #pragma mark- NSCollectionViewDataSource
+- (NSInteger)numberOfSectionsInCollectionView:(NSCollectionView *)collectionView  {
+    return 1;
+}
+
 - (NSInteger)collectionView:(NSCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return kNumberOfItemsInSection;
+    return self.applications.count;
 }
 
 - (NSCollectionViewItem *)collectionView:(NSCollectionView *)collectionView itemForRepresentedObjectAtIndexPath:(NSIndexPath *)indexPath {

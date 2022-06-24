@@ -20,6 +20,8 @@
 		CA3474FD23CC698C004EBEBF /* AppCollectionItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3474FB23CC698C004EBEBF /* AppCollectionItem.xib */; };
 		CA34750123CC8577004EBEBF /* AppSelectorWndController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3474FF23CC8577004EBEBF /* AppSelectorWndController.m */; };
 		CA34750223CC8577004EBEBF /* AppSelectorWndController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA34750023CC8577004EBEBF /* AppSelectorWndController.xib */; };
+		EA292F39D11B657AF2428F46 /* libPods-CGWindowList.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EF6AEE28E33253307A4254E /* libPods-CGWindowList.a */; };
+		F98059162865AC5A004B1505 /* CNCollectionViewCustomLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F98059152865AC5A004B1505 /* CNCollectionViewCustomLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00FB7D90573E42D0F01B5E4F /* Pods-CGWindowList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CGWindowList.release.xcconfig"; path = "Target Support Files/Pods-CGWindowList/Pods-CGWindowList.release.xcconfig"; sourceTree = "<group>"; };
+		8EF6AEE28E33253307A4254E /* libPods-CGWindowList.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CGWindowList.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C77C411C59DC4A9EA5415E74 /* Pods-CGWindowList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CGWindowList.debug.xcconfig"; path = "Target Support Files/Pods-CGWindowList/Pods-CGWindowList.debug.xcconfig"; sourceTree = "<group>"; };
 		CA31DD5023C7453F007AF2A9 /* CGWindowList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CGWindowList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA31DD5323C7453F007AF2A9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CA31DD5423C7453F007AF2A9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -65,6 +70,8 @@
 		CA3474FE23CC8577004EBEBF /* AppSelectorWndController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppSelectorWndController.h; sourceTree = "<group>"; };
 		CA3474FF23CC8577004EBEBF /* AppSelectorWndController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppSelectorWndController.m; sourceTree = "<group>"; };
 		CA34750023CC8577004EBEBF /* AppSelectorWndController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppSelectorWndController.xib; sourceTree = "<group>"; };
+		F98059142865AC5A004B1505 /* CNCollectionViewCustomLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNCollectionViewCustomLayout.h; sourceTree = "<group>"; };
+		F98059152865AC5A004B1505 /* CNCollectionViewCustomLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNCollectionViewCustomLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA292F39D11B657AF2428F46 /* libPods-CGWindowList.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +100,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		236AE3A97019C2DED9FFAC65 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8EF6AEE28E33253307A4254E /* libPods-CGWindowList.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		97BD02D4A45957354710B373 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C77C411C59DC4A9EA5415E74 /* Pods-CGWindowList.debug.xcconfig */,
+				00FB7D90573E42D0F01B5E4F /* Pods-CGWindowList.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		CA31DD4723C7453F007AF2A9 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +124,8 @@
 				CA31DD6923C74544007AF2A9 /* CGWindowListTests */,
 				CA31DD7423C74544007AF2A9 /* CGWindowListUITests */,
 				CA31DD5123C7453F007AF2A9 /* Products */,
+				97BD02D4A45957354710B373 /* Pods */,
+				236AE3A97019C2DED9FFAC65 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,6 +177,8 @@
 		CA3474F823CC6960004EBEBF /* AppCollection */ = {
 			isa = PBXGroup;
 			children = (
+				F98059142865AC5A004B1505 /* CNCollectionViewCustomLayout.h */,
+				F98059152865AC5A004B1505 /* CNCollectionViewCustomLayout.m */,
 				CA3474F323CC6701004EBEBF /* AppSelecotorController.h */,
 				CA3474F423CC6701004EBEBF /* AppSelecotorController.m */,
 				CA3474F523CC6701004EBEBF /* AppSelecotorController.xib */,
@@ -170,6 +199,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CA31DD7A23C74544007AF2A9 /* Build configuration list for PBXNativeTarget "CGWindowList" */;
 			buildPhases = (
+				0DB5E1E59E5066B39F30AAD6 /* [CP] Check Pods Manifest.lock */,
 				CA31DD4C23C7453F007AF2A9 /* Sources */,
 				CA31DD4D23C7453F007AF2A9 /* Frameworks */,
 				CA31DD4E23C7453F007AF2A9 /* Resources */,
@@ -290,6 +320,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0DB5E1E59E5066B39F30AAD6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CGWindowList-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CA31DD4C23C7453F007AF2A9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -301,6 +356,7 @@
 				CA31DD6023C74544007AF2A9 /* main.m in Sources */,
 				CA34750123CC8577004EBEBF /* AppSelectorWndController.m in Sources */,
 				CA31DD5523C7453F007AF2A9 /* AppDelegate.m in Sources */,
+				F98059162865AC5A004B1505 /* CNCollectionViewCustomLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +516,7 @@
 		};
 		CA31DD7B23C74544007AF2A9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C77C411C59DC4A9EA5415E74 /* Pods-CGWindowList.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CGWindowList/CGWindowList.entitlements;
@@ -477,6 +534,7 @@
 		};
 		CA31DD7C23C74544007AF2A9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00FB7D90573E42D0F01B5E4F /* Pods-CGWindowList.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CGWindowList/CGWindowList.entitlements;

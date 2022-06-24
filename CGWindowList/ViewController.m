@@ -20,8 +20,10 @@
     [super viewDidLoad];
 
     // Do any additional setup after loading the view.
-    self.selecotor = [[AppSelectorWndController alloc] initWithWindowNibName:@"AppSelectorWndController"];
-    [self.selecotor.window center];
+    //[self.selecotor.window center];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self onDisplayBtnClicked:nil];
+    });
 }
 
 
@@ -32,8 +34,13 @@
 }
 
 - (IBAction)onDisplayBtnClicked:(id)sender {
-    self.selecotor.hostWindow = self.view.window;
-    [self.view.window beginSheet:self.selecotor.window completionHandler:^(NSModalResponse returnCode) {
-    }];
+    if (!self.selecotor) {
+        [self.selecotor close];
+        self.selecotor = nil;
+    }
+    self.selecotor = [[AppSelectorWndController alloc] initWithWindowNibName:@"AppSelectorWndController"];
+    
+    [self.selecotor.window center];
+    [self.selecotor showWindow:nil];
 }
 @end
