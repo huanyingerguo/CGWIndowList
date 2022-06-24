@@ -12,11 +12,12 @@
 
 static int kNumberOfItemsInSection = 5;
 
-@interface AppSelecotorController () <NSCollectionViewDataSource, NSCollectionViewDelegate>
+@interface AppSelecotorController () <NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout>
 @property (weak) IBOutlet NSCollectionView *collectionView;
 @property (weak) IBOutlet NSScrollView *baseScrollView;
 
 @property (strong) NSMutableArray *applications;
+@property (assign) NSUInteger maxAppNumbers;
 
 @end
 
@@ -32,7 +33,8 @@ static int kNumberOfItemsInSection = 5;
     [self initSubview];
 }
 
-- (void)refreshViews {
+- (void)refreshViews:(int)numbers {
+    self.maxAppNumbers = numbers;
     [self.applications removeAllObjects];
     [self getWindowsInfoOnScreens];
     if (@available(macOS 10.11, *)) {
@@ -54,16 +56,17 @@ static int kNumberOfItemsInSection = 5;
     CNCollectionViewLayout *layout = self.collectionView.collectionViewLayout;
     if (!layout) {
         layout = [[CNCollectionViewLayout alloc] init];
+        self.collectionView.collectionViewLayout = layout;
     }
     
+    layout.totalCount = self.maxAppNumbers;
     layout.maximumNumberOfRows = 3;
     //layout.maximumNumberOfColumns = 3;
     
     NSSize size = self.view.superview.frame.size;
     layout.minimumInteritemSpacing = 1;
     layout.minimumLineSpacing = 1;
-    layout.minimumItemSize = NSMakeSize((size.width - 2*layout.minimumInteritemSpacing) / 3.0, (size.height - 2 * layout.minimumLineSpacing) / 3.0);
-    self.collectionView.collectionViewLayout = layout;
+    layout.minimumItemSize = NSMakeSize((size.width - 2 * layout.minimumInteritemSpacing) / 3.0, (size.height - 2 * layout.minimumLineSpacing) / 4.0);
 }
 
 #pragma mark- Capture Application Views
@@ -85,8 +88,12 @@ static int kNumberOfItemsInSection = 5;
         CFNumberRef numberRef = (__bridge CFNumberRef) windowDict[(id) kCGWindowLayer];
         CFNumberGetValue(numberRef, kCFNumberSInt32Type, &layer);
         
-        if (layer >=0 ) {
+        if (layer <10 ) {
             [self.applications addObject:windowDict];
+        }
+        
+        if (self.applications.count == self.maxAppNumbers) {
+            *stop = YES;
         }
     }];
     

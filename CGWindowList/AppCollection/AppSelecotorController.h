@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AppSelecotorController : NSViewController
 
-- (void)refreshViews;
+- (void)refreshViews:(int)numbers;
 - (void)updateLayout;
 @end
 

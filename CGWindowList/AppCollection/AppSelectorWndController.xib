@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="AppSelectorWndController">
             <connections>
                 <outlet property="collectionView" destination="DX8-pV-Nvc" id="ibT-l7-SES"/>
+                <outlet property="maxAppNums" destination="qvW-i3-wb3" id="vkh-cO-L4z"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -46,6 +47,15 @@
                             <action selector="onCancelClicked:" target="-2" id="P4O-Ow-Udc"/>
                         </connections>
                     </button>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qvW-i3-wb3">
+                        <rect key="frame" x="707" y="10" width="96" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="eUJ-rq-L5l">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="DX8-pV-Nvc" secondAttribute="trailing" id="0av-GG-c54"/>

@@ -13,6 +13,7 @@
 @interface AppSelectorWndController ()
 @property (strong) AppSelecotorController *seletor;
 @property (weak) IBOutlet NSView *collectionView;
+@property (weak) IBOutlet NSTextField *maxAppNums;
 
 @end
 
@@ -37,11 +38,20 @@
 
 - (void)showWindow:(id)sender {
     [self.window center];
-    [self.seletor refreshViews];
+    [self.seletor refreshViews:[self numbers]];
 }
 
 - (void)setHostWindow:(NSWindow *)hostWindow {
     _hostWindow = hostWindow;
+}
+
+- (NSUInteger)numbers {
+    int num = [self.maxAppNums.stringValue intValue];
+    if (num <=0 ) {
+        return INT_MAX;
+    }
+    
+    return num;
 }
 
 #pragma mark- Window Delegate
@@ -59,11 +69,7 @@
 }
 
 - (IBAction)onOKClicked:(id)sender {
-    if (self.hostWindow) {
-        [self.hostWindow endSheet:self.window];
-    }
-    
-    [self close];
+    [self.seletor refreshViews:[self numbers]];
 }
 
 @end

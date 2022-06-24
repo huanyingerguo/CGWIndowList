@@ -21,7 +21,7 @@
 		CA34750123CC8577004EBEBF /* AppSelectorWndController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3474FF23CC8577004EBEBF /* AppSelectorWndController.m */; };
 		CA34750223CC8577004EBEBF /* AppSelectorWndController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA34750023CC8577004EBEBF /* AppSelectorWndController.xib */; };
 		EA292F39D11B657AF2428F46 /* libPods-CGWindowList.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EF6AEE28E33253307A4254E /* libPods-CGWindowList.a */; };
-		F98059162865AC5A004B1505 /* CNCollectionViewCustomLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F98059152865AC5A004B1505 /* CNCollectionViewCustomLayout.m */; };
+		F98059162865AC5A004B1505 /* CNCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F98059152865AC5A004B1505 /* CNCollectionViewLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,8 +70,8 @@
 		CA3474FE23CC8577004EBEBF /* AppSelectorWndController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppSelectorWndController.h; sourceTree = "<group>"; };
 		CA3474FF23CC8577004EBEBF /* AppSelectorWndController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppSelectorWndController.m; sourceTree = "<group>"; };
 		CA34750023CC8577004EBEBF /* AppSelectorWndController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppSelectorWndController.xib; sourceTree = "<group>"; };
-		F98059142865AC5A004B1505 /* CNCollectionViewCustomLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNCollectionViewCustomLayout.h; sourceTree = "<group>"; };
-		F98059152865AC5A004B1505 /* CNCollectionViewCustomLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNCollectionViewCustomLayout.m; sourceTree = "<group>"; };
+		F98059142865AC5A004B1505 /* CNCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNCollectionViewLayout.h; sourceTree = "<group>"; };
+		F98059152865AC5A004B1505 /* CNCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNCollectionViewLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,8 +177,8 @@
 		CA3474F823CC6960004EBEBF /* AppCollection */ = {
 			isa = PBXGroup;
 			children = (
-				F98059142865AC5A004B1505 /* CNCollectionViewCustomLayout.h */,
-				F98059152865AC5A004B1505 /* CNCollectionViewCustomLayout.m */,
+				F98059142865AC5A004B1505 /* CNCollectionViewLayout.h */,
+				F98059152865AC5A004B1505 /* CNCollectionViewLayout.m */,
 				CA3474F323CC6701004EBEBF /* AppSelecotorController.h */,
 				CA3474F423CC6701004EBEBF /* AppSelecotorController.m */,
 				CA3474F523CC6701004EBEBF /* AppSelecotorController.xib */,
@@ -356,7 +356,7 @@
 				CA31DD6023C74544007AF2A9 /* main.m in Sources */,
 				CA34750123CC8577004EBEBF /* AppSelectorWndController.m in Sources */,
 				CA31DD5523C7453F007AF2A9 /* AppDelegate.m in Sources */,
-				F98059162865AC5A004B1505 /* CNCollectionViewCustomLayout.m in Sources */,
+				F98059162865AC5A004B1505 /* CNCollectionViewLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
