@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CNCollectionViewLayout : NSCollectionViewGridLayout
-@property (assign) NSUInteger totalCount;
+@property (assign, nonatomic) NSUInteger totalCount;
 @end
 
 NS_ASSUME_NONNULL_END

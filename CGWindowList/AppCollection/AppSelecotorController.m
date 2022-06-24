@@ -60,9 +60,6 @@ static int kNumberOfItemsInSection = 5;
     }
     
     layout.totalCount = self.maxAppNumbers;
-    layout.maximumNumberOfRows = 3;
-    //layout.maximumNumberOfColumns = 3;
-    
     NSSize size = self.view.superview.frame.size;
     layout.minimumInteritemSpacing = 1;
     layout.minimumLineSpacing = 1;
