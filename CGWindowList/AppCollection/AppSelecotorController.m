@@ -144,6 +144,8 @@ static int kNumberOfItemsInSection = 5;
 }
 
 #pragma mark- NSCollectionViewDelegate
+//- (CGFloat)collectionView:(NSCollectionView *)collectionView layout:(NSCollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+//}
 
 #pragma mark- Util
 - (void)reloadData {

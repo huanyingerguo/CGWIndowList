@@ -20,10 +20,25 @@
     CGFloat height = 0;
     
     // 最小宽高
-    width = (size.width - 4 * self.minimumInteritemSpacing) / 3.1;
-    height = (size.height - 2 * self.minimumLineSpacing) / 4; //除以3，最小高度会偏大，导致放不下
+    if (self.totalCount == 1) {
+        
+    } else if (self.totalCount == 2) {
+        
+    } else if (self.totalCount == 3 ||
+               self.totalCount == 4) {
+        
+    } else if (self.totalCount == 5 ||
+               self.totalCount == 6) {
+        
+    } else {
+        width = (size.width - 4 * self.minimumInteritemSpacing) / 3.1;
+        height = (size.height - 4 * self.minimumLineSpacing) / 3.1; //除以3，最小高度会偏大，导致放不下
+    }
     
+    //最小+最大，等于约束了最终宽高
     self.minimumItemSize = NSMakeSize(width, height);
+    self.maximumItemSize = NSMakeSize(width, height);
+    
     self.size = NSMakeSize(width, height);
 }
 
@@ -52,22 +67,20 @@
             self.totalCount >= 9) {
             height = self.size.height;
         }
+        
         NSPoint point = attr.frame.origin;
         if (self.totalCount == 3) {
             if (attr.indexPath.item == 2) {
                 point.x += size.width / 2;
-                attr.frame = NSMakeRect(point.x, point.y, size.width, size.height);
             }
         } else if (self.totalCount == 5) {
             if (attr.indexPath.item == 3 ||
                 attr.indexPath.item == 4) {
                 point.x += size.width / 2;
-                attr.frame = NSMakeRect(point.x, point.y, size.width, size.height);
             }
         } else if (self.totalCount == 7) {
             if (attr.indexPath.item == 6) {
                 point.x += size.width;
-                attr.frame = NSMakeRect(point.x, point.y, size.width, size.height);
             }
         } else if (self.totalCount == 8) {
             if (attr.indexPath.item == 6 ||

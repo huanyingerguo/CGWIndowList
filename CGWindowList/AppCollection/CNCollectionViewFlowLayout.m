@@ -22,8 +22,31 @@
     // 最小宽高
     width = (size.width - 4 * self.minimumInteritemSpacing) / 3.1;
     height = (size.height - 2 * self.minimumLineSpacing) / 4; //除以3，最小高度会偏大，导致放不下
+    /*
+     
+    // 最小宽高: 1*1 1*2 2*2 2*3 3*3
+    if (self.totalCount == 1) {
+        width = size.width;
+        height = size.height;
+    } else if (self.totalCount == 2) {
+        width = (size.width - 1 * self.minimumInteritemSpacing) / 2;
+        height = (size.height - 0 * self.minimumLineSpacing);
+    } else if (self.totalCount == 3 ||
+               self.totalCount == 4) {
+        width = (size.width - 1 * self.minimumInteritemSpacing) / 2;
+        height = (size.height - 1 * self.minimumLineSpacing) / 2;
+    } else if (self.totalCount == 5 ||
+               self.totalCount == 6) {
+        width = (size.width - 2 * self.minimumInteritemSpacing) / 3;
+        height = (size.height - 1 * self.minimumLineSpacing) / 2;
+    } else {
+        width = (size.width - 2 * self.minimumInteritemSpacing) / 3;
+        height = (size.height - 2 * self.minimumLineSpacing) / 3;
+    }
+     */
     
     self.size = NSMakeSize(width, height);
+    self.itemSize = NSMakeSize(width, height);
 }
 
 - (void)setTotalCount:(NSUInteger)totalCount {
@@ -35,13 +58,19 @@
     
     for (NSCollectionViewLayoutAttributes *attr in attrs) {
         NSSize size = attr.frame.size;
-        long height = size.height;
-        if (!NSEqualSizes(self.size, NSZeroSize) &&
-            self.totalCount >= 9) {
-            height = self.size.height;
-        }
         NSPoint point = attr.frame.origin;
         if (self.totalCount == 3) {
+            if (attr.indexPath.item == 2) {
+                point.x += size.width / 2;
+                attr.frame = NSMakeRect(point.x, point.y, size.width, size.height);
+            }
+        } else if (self.totalCount == 5) {
+            if (attr.indexPath.item == 3 ||
+                attr.indexPath.item == 4) {
+                point.x += size.width / 2;
+                attr.frame = NSMakeRect(point.x, point.y, size.width, size.height);
+            }
+        } else if (self.totalCount == 3) {
             if (attr.indexPath.item == 2) {
                 point.x += size.width / 2;
                 attr.frame = NSMakeRect(point.x, point.y, size.width, size.height);
@@ -61,10 +90,9 @@
             if (attr.indexPath.item == 6 ||
                 attr.indexPath.item == 7) {
                 point.x += size.width / 2;
+                attr.frame = NSMakeRect(point.x, point.y, size.width, size.height);
             }
         }
-        
-        attr.frame = NSMakeRect(point.x, point.y, size.width, height);
     }
     
     
