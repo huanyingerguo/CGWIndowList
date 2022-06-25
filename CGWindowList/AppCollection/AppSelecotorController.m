@@ -8,7 +8,8 @@
 
 #import "AppSelecotorController.h"
 #import "AppCollectionItem.h"
-#import "CNCollectionViewLayout.h"
+#import "CNCollectionViewGridLayout.h"
+#import "CNCollectionViewFlowLayout.h"
 
 static int kNumberOfItemsInSection = 5;
 
@@ -18,6 +19,7 @@ static int kNumberOfItemsInSection = 5;
 
 @property (strong) NSArray *_apps;
 @property (assign) NSUInteger maxAppNumbers;
+@property (assign) NSUInteger numPerpage;
 @end
 
 @implementation AppSelecotorController
@@ -29,11 +31,12 @@ static int kNumberOfItemsInSection = 5;
     if (!_applications) {
         _applications = [NSMutableArray arrayWithCapacity:1];
     }
+    self.numPerpage = 9;
     [self initSubview];
 }
 
 - (void)setNextPage {
-    if ((self.curPage + 1) * 9 >= self.applications.count) {
+    if ((self.curPage + 1) * self.numPerpage >= self.applications.count) {
         return;
     }
     
@@ -55,7 +58,7 @@ static int kNumberOfItemsInSection = 5;
     [self.applications removeAllObjects];
     [self getWindowsInfoOnScreens];
     if (@available(macOS 10.11, *)) {
-        self.curPage = 0;
+        self.curPage = 0; //重新加载
         self._apps = [self.applications copy]; //默认全部数据
         [self updateLayout];
         [self.collectionView reloadData];
@@ -124,8 +127,8 @@ static int kNumberOfItemsInSection = 5;
 
 - (NSInteger)collectionView:(NSCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     NSUInteger count = self._apps.count;
-    if (count > 9) {
-        count = 9;
+    if (count > self.numPerpage) {
+        count = self.numPerpage;
     }
     return count;
 }
@@ -151,61 +154,29 @@ static int kNumberOfItemsInSection = 5;
 
 - (void)refreshApps {
     NSUInteger count = self.applications.count;
-    if (count <= 9) {
+    if (count <= self.numPerpage) {
         self._apps = [self.applications copy];
         return;
     }
     
-    NSUInteger remainCnt = count - self.curPage *9;
-    NSUInteger length = 9;
-    if (remainCnt < 9) {
+    NSUInteger remainCnt = count - self.curPage * self.numPerpage;
+    NSUInteger length = self.numPerpage;
+    if (remainCnt < self.numPerpage) {
         length = remainCnt;
     }
     
-    self._apps = [self.applications subarrayWithRange:NSMakeRange(self.curPage*9, length)];
+    self._apps = [self.applications subarrayWithRange:NSMakeRange(self.curPage * self.numPerpage, length)];
 }
 
 - (void)updateLayout {
-    if (self.applications.count <= 9) {
-        CNCollectionViewLayout *layout = self.collectionView.collectionViewLayout;
-        if (!layout) {
-            layout = [[CNCollectionViewLayout alloc] init];
-            self.collectionView.collectionViewLayout = layout;
-        }
-                
-        layout.totalCount = self.maxAppNumbers;
-        layout.minimumInteritemSpacing = 1;
-        layout.minimumLineSpacing = 1;
-        
-        if (layout.totalCount >= 5) { //每行至少3个。
-            NSSize size = self.view.superview.frame.size;
-            CGFloat width = 0;
-            CGFloat height = 0;
-            
-            width = (size.width - 2 * layout.minimumInteritemSpacing) / 3;
-            height = (size.height - 2 * layout.minimumLineSpacing) / 4; //除以3，最小高度会偏大，导致放不下
-            
-            layout.minimumItemSize = NSMakeSize(width, height);
-        }
-    } else {
-        CNCollectionViewLayout *layout = self.collectionView.collectionViewLayout;
-        if (!layout) {
-            layout = [[CNCollectionViewLayout alloc] init];
-            self.collectionView.collectionViewLayout = layout;
-        }
-        
-        layout.totalCount = self.applications.count;
-        layout.maximumNumberOfRows = 3;
-        layout.maximumNumberOfColumns = 3;
-        
-        NSSize size = self.view.superview.frame.size;
-        CGFloat width = 0;
-        CGFloat height = 0;
-        
-        width = (size.width - 2 * layout.minimumInteritemSpacing) / 3;
-        height = (size.height - 2 * layout.minimumLineSpacing) / 3; //除以3，最小高度会偏大，导致放不下
-        
-        layout.minimumItemSize = NSMakeSize(width, height);
+    id<CNCollectionViewLayout> layout = self.collectionView.collectionViewLayout;
+    if (!layout) {
+        layout = [[CNCollectionViewFlowLayout alloc] init];
+        self.collectionView.collectionViewLayout = (NSCollectionViewLayout *)layout;
     }
+
+    layout.totalCount = self.applications.count;
+    NSSize  size = self.view.superview.frame.size;
+    [layout updateElementSize:size];
 }
 @end

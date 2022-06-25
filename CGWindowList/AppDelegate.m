@@ -7,15 +7,19 @@
 //
 
 #import "AppDelegate.h"
+#import "AppSelectorWndController.h"
 
 @interface AppDelegate ()
-
+@property (strong) AppSelectorWndController *windCtrl;
 @end
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
+//    self.windCtrl = [[AppSelectorWndController alloc] initWithWindowNibName:@"AppSelectorWndController"];
+//    [self.windCtrl.window center];
+//    [self.windCtrl showWindow:nil];
 }
 
 

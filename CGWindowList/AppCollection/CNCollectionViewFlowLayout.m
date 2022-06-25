@@ -1,20 +1,29 @@
 //
-//  CNCollectionViewLayout.m
+//  CNCollectionViewFlowLayout.m
 //  CGWindowList
 //
-//  Created by jinglin sun on 2022/6/24.
+//  Created by jinglin sun on 2022/6/26.
 //  Copyright © 2022 sunjinglin. All rights reserved.
 //
 
-#import "CNCollectionViewLayout.h"
+#import "CNCollectionViewFlowLayout.h"
 
-@implementation CNCollectionViewLayout
-
+@implementation CNCollectionViewFlowLayout
 - (void)prepareLayout {
+    self.minimumInteritemSpacing = 1;
+    self.minimumLineSpacing = 1;
     [super prepareLayout];
 }
 
 - (void)updateElementSize:(NSSize)size {
+    CGFloat width = 0;
+    CGFloat height = 0;
+    
+    // 最小宽高
+    width = (size.width - 4 * self.minimumInteritemSpacing) / 3.1;
+    height = (size.height - 2 * self.minimumLineSpacing) / 4; //除以3，最小高度会偏大，导致放不下
+    
+    self.size = NSMakeSize(width, height);
 }
 
 - (void)setTotalCount:(NSUInteger)totalCount {
@@ -62,4 +71,15 @@
     return attrs;
 }
 
+- (nullable NSCollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.item == 3) {
+        NSCollectionViewLayoutAttributes *attribute = [super layoutAttributesForItemAtIndexPath:indexPath];
+        NSPoint point =  attribute.frame.origin;
+        point.x -= attribute.frame.size.width/2;
+    
+        return attribute;
+    }
+    
+    return [super layoutAttributesForItemAtIndexPath:indexPath];
+}
 @end

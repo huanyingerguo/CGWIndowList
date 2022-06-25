@@ -96,7 +96,7 @@
                             <constraint firstAttribute="height" constant="16" id="htA-b4-7cj"/>
                             <constraint firstAttribute="width" constant="40" id="xQK-Hd-5eZ"/>
                         </constraints>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="Ymn-8q-eyw">
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="0/1" id="Ymn-8q-eyw">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -123,7 +123,7 @@
                 </constraints>
             </view>
             <connections>
-                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+                <outlet property="delegate" destination="-3" id="S45-Sv-XW1"/>
             </connections>
             <point key="canvasLocation" x="188" y="169"/>
         </window>

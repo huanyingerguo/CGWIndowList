@@ -28,6 +28,7 @@
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     [self initSubViews];
     self.window.delegate = self;
+    self.maxAppNums.stringValue = @(INT_MAX).stringValue;
 }
 
 - (void)initSubViews {
@@ -87,8 +88,14 @@
 }
 
 - (void)updateButtonState {
-    NSUInteger pages = self.seletor.applications.count / 9;
-    self.pageLabel.stringValue = [NSString stringWithFormat:@"%ld/%ld", self.seletor.curPage, pages];
+    NSUInteger appNums = self.seletor.applications.count;
+    NSUInteger pages =  appNums / 9;
+    if (appNums % 9) {
+        pages+1;
+    }
+    
+    self.pageLabel.stringValue = [NSString stringWithFormat:@"%ld/%ld", self.seletor.curPage + 1, pages + 1];
+    self.maxAppNums.stringValue = @(appNums).stringValue;
     
     if (self.seletor.curPage <= 0 ) {
         self.preButton.enabled = NO;
@@ -96,7 +103,7 @@
         self.preButton.enabled = YES;
     }
     
-    if (self.seletor.curPage > pages - 1 ) {
+    if (self.seletor.curPage >= pages ) {
         self.nextButton.enabled = NO;
     } else {
         self.nextButton.enabled = YES;
