@@ -10,6 +10,7 @@
 #import "AppCollectionItem.h"
 #import "CNCollectionViewGridLayout.h"
 #import "CNCollectionViewFlowLayout.h"
+#import <Masonry/Masonry.h>
 
 static int kNumberOfItemsInSection = 5;
 
@@ -173,12 +174,37 @@ static int kNumberOfItemsInSection = 5;
 - (void)updateLayout {
     id<CNCollectionViewLayout> layout = self.collectionView.collectionViewLayout;
     if (!layout) {
-        layout = [[CNCollectionViewFlowLayout alloc] init];
+        layout = [[CNCollectionViewGridLayout alloc] init];
         self.collectionView.collectionViewLayout = (NSCollectionViewLayout *)layout;
     }
 
     layout.totalCount = self.applications.count;
     NSSize  size = self.view.superview.frame.size;
     [layout updateElementSize:size];
+    
+    
+    NSSize cellSize = NSZeroSize;
+    if (self.applications.count == 2) {
+        
+    } else if (self.applications.count == 2) {
+        
+    } else if (self.applications.count == 3) {
+        
+    } else if (self.applications.count == 4) {
+        
+    } else if (self.applications.count == 5) {
+        
+    } else if (self.applications.count == 6) {
+        
+    } else {
+        
+    }
+    
+    [self.collectionView.enclosingScrollView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.view.mas_centerX);
+        make.centerY.mas_equalTo(self.view.mas_centerY);
+        make.width.mas_equalTo(layout.size.width * 3 + 4);
+        make.height.mas_equalTo(layout.size.height * 3 + 4);
+    }];
 }
 @end

@@ -96,7 +96,103 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "103"
             endingLineNumber = "103"
-            landmarkName = "-updateElementSize:"
+            landmarkName = "-layoutAttributesForItemAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "30911E07-22FC-4C13-8119-5A2BE80B61E1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CGWindowList/AppCollection/AppSelecotorController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "-updateLayout"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "30911E07-22FC-4C13-8119-5A2BE80B61E1 - 4c9d93ff08ebe77c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[AppSelecotorController updateLayout]"
+                  moduleName = "CGWindowList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jinglinsun/Documents/Allcode/Git_Me/CGWIndowList/CGWindowList/AppCollection/AppSelecotorController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "185"
+                  endingLineNumber = "185"
+                  offsetFromSymbolStart = "554">
+               </Location>
+               <Location
+                  uuid = "30911E07-22FC-4C13-8119-5A2BE80B61E1 - d1dbff290aa282ad"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[AppSelecotorController updateLayout]_block_invoke"
+                  moduleName = "CGWindowList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jinglinsun/Documents/Allcode/Git_Me/CGWIndowList/CGWindowList/AppCollection/AppSelecotorController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "185"
+                  endingLineNumber = "185"
+                  offsetFromSymbolStart = "15">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A2E9747F-DB36-4CDB-BCEE-DF413206C95A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CGWindowList/AppCollection/CNCollectionViewGridLayout.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "-_expectedCellSize:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B83080BC-8D0F-4961-8B85-8519F1690FA4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CGWindowList/AppCollection/CNCollectionViewGridLayout.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "-_expectedCellSize:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "679486D6-860A-4B6D-BB7D-AB4486476E86"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CGWindowList/AppCollection/CNCollectionViewGridLayout.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "-_expectedCellSize:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

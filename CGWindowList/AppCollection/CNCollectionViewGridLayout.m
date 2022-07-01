@@ -16,30 +16,66 @@
 }
 
 - (void)updateElementSize:(NSSize)size {
+    //最小+最大，等于约束了最终宽高
+    NSSize expectSize = [self _expectedCellSize:size];
+    self.minimumItemSize = expectSize;
+    self.maximumItemSize = expectSize;
+    
+    self.size = expectSize;
+}
+
+- (NSSize)_expectedCellSizeV0:(NSSize)size {
     CGFloat width = 0;
     CGFloat height = 0;
     
     // 最小宽高
     if (self.totalCount == 1) {
-        
     } else if (self.totalCount == 2) {
-        
     } else if (self.totalCount == 3 ||
                self.totalCount == 4) {
-        
     } else if (self.totalCount == 5 ||
                self.totalCount == 6) {
-        
     } else {
         width = (size.width - 4 * self.minimumInteritemSpacing) / 3.1;
         height = (size.height - 4 * self.minimumLineSpacing) / 3.1; //除以3，最小高度会偏大，导致放不下
     }
+
     
-    //最小+最大，等于约束了最终宽高
-    self.minimumItemSize = NSMakeSize(width, height);
-    self.maximumItemSize = NSMakeSize(width, height);
+    return NSMakeSize(width, height);
+}
+
+- (NSSize)_expectedCellSize:(NSSize)size {
+    CGFloat cellWidth = size.width;
+    CGFloat cellHeight = size.height;
+        
+    // 最小宽高
+    if (self.totalCount == 1) {
+        cellWidth = size.width;
+        cellHeight = size.height;
+    } else if (self.totalCount == 2) {
+        cellWidth = (size.width - 3 * self.minimumInteritemSpacing) / 3.0;
+        cellHeight = (size.height - 2 * self.minimumInteritemSpacing) / 1.0;
+    } else if (self.totalCount == 3 ||
+               self.totalCount == 4) {
+        cellWidth = (size.width - 3 * self.minimumInteritemSpacing) / 3.0;
+        cellHeight = (size.height - 3 * self.minimumInteritemSpacing) / 2.0;
+    } else if (self.totalCount == 5 ||
+               self.totalCount == 6) {
+        cellWidth = (size.width - 4 * self.minimumInteritemSpacing) / 3.0;
+        cellHeight = (size.height - 3 * self.minimumInteritemSpacing) / 2.0;
+    } else {
+        cellWidth = (size.width - 4 * self.minimumInteritemSpacing) / 3.0;
+        cellHeight = (size.height - 4 * self.minimumInteritemSpacing) / 3.0;
+    }
     
-    self.size = NSMakeSize(width, height);
+    float radio = cellHeight * 1.0 / cellWidth;
+    if (radio > 9 / 16.0) { //高大了，以宽度为基准
+        cellHeight = cellWidth * 9 / 16.0;
+    } else {
+        cellWidth = cellHeight * 16 / 9.0;
+    }
+    
+    return NSMakeSize(cellWidth, cellHeight);
 }
 
 - (void)setTotalCount:(NSUInteger)totalCount {

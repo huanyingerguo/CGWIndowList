@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CNCollectionViewGridLayout : NSCollectionViewGridLayout <CNCollectionViewLayout>
 @property (assign, nonatomic) NSUInteger totalCount;
 @property (assign, nonatomic) NSSize size;
+@property (assign, nonatomic) NSSize containerSize;
 
 - (void)updateElementSize:(NSSize)size;
 @end
