@@ -67,6 +67,7 @@ static int kNumberOfItemsInSection = 5;
 }
 
 -(void)initSubview{
+    self.collectionView.enclosingScrollView.backgroundColor = [NSColor yellowColor];
     self.collectionView.enclosingScrollView.verticalScroller.hidden = YES;
     self.collectionView.enclosingScrollView.horizontalScroller.hidden = YES;
     //[self.collectionView.enclosingScrollView setHorizontalScroller:nil];
@@ -182,29 +183,21 @@ static int kNumberOfItemsInSection = 5;
     NSSize  size = self.view.superview.frame.size;
     [layout updateElementSize:size];
     
-    
-    NSSize cellSize = NSZeroSize;
-    if (self.applications.count == 2) {
-        
-    } else if (self.applications.count == 2) {
-        
-    } else if (self.applications.count == 3) {
-        
-    } else if (self.applications.count == 4) {
-        
-    } else if (self.applications.count == 5) {
-        
-    } else if (self.applications.count == 6) {
-        
-    } else {
-        
+    CGFloat cellWidth = layout.size.width;
+    CGFloat cellheight = layout.size.height;
+    if (layout.cellRefer == ECellRefer_Height) {
+        cellWidth += 0.2;
+    } else if (layout.cellRefer == ECellRefer_Width) {
+        cellheight += 0.2;
     }
     
     [self.collectionView.enclosingScrollView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view.mas_centerX);
         make.centerY.mas_equalTo(self.view.mas_centerY);
-        make.width.mas_equalTo(layout.size.width * 3 + 4);
-        make.height.mas_equalTo(layout.size.height * 3 + 4);
+//        make.width.mas_equalTo(size.width + 4);
+//        make.height.mas_equalTo(size.height + 4);
+        make.width.mas_equalTo(cellWidth * 3 + 4);
+        make.height.mas_equalTo(cellheight * 3 + 4);
     }];
 }
 @end

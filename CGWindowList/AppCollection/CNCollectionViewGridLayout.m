@@ -36,8 +36,8 @@
     } else if (self.totalCount == 5 ||
                self.totalCount == 6) {
     } else {
-        width = (size.width - 4 * self.minimumInteritemSpacing) / 3.1;
-        height = (size.height - 4 * self.minimumLineSpacing) / 3.1; //除以3，最小高度会偏大，导致放不下
+        width = (size.width - 2 * self.minimumInteritemSpacing) / 3.0;
+        height = (size.height - 2 * self.minimumLineSpacing) / 3.0; //除以3，最小高度会偏大，导致放不下
     }
 
     
@@ -48,31 +48,39 @@
     CGFloat cellWidth = size.width;
     CGFloat cellHeight = size.height;
         
+    int rowCnt = 1;
+    int columnCnt = 1;
+
     // 最小宽高
     if (self.totalCount == 1) {
-        cellWidth = size.width;
-        cellHeight = size.height;
+        rowCnt = 1;
+        columnCnt = 1;
     } else if (self.totalCount == 2) {
-        cellWidth = (size.width - 3 * self.minimumInteritemSpacing) / 3.0;
-        cellHeight = (size.height - 2 * self.minimumInteritemSpacing) / 1.0;
+        rowCnt = 2;
+        columnCnt = 1;
     } else if (self.totalCount == 3 ||
                self.totalCount == 4) {
-        cellWidth = (size.width - 3 * self.minimumInteritemSpacing) / 3.0;
-        cellHeight = (size.height - 3 * self.minimumInteritemSpacing) / 2.0;
+        rowCnt = 2;
+        columnCnt = 2;
     } else if (self.totalCount == 5 ||
                self.totalCount == 6) {
-        cellWidth = (size.width - 4 * self.minimumInteritemSpacing) / 3.0;
-        cellHeight = (size.height - 3 * self.minimumInteritemSpacing) / 2.0;
+        rowCnt = 3;
+        columnCnt = 2;
     } else {
-        cellWidth = (size.width - 4 * self.minimumInteritemSpacing) / 3.0;
-        cellHeight = (size.height - 4 * self.minimumInteritemSpacing) / 3.0;
+        rowCnt = 3;
+        columnCnt = 3;
     }
+    
+    cellWidth = (size.width - rowCnt * self.minimumInteritemSpacing) * 1.0 / rowCnt;
+    cellHeight = (size.height - columnCnt * self.minimumInteritemSpacing) * 1.0 / columnCnt;
     
     float radio = cellHeight * 1.0 / cellWidth;
     if (radio > 9 / 16.0) { //高大了，以宽度为基准
         cellHeight = cellWidth * 9 / 16.0;
+        self.cellRefer = ECellRefer_Width;
     } else {
         cellWidth = cellHeight * 16 / 9.0;
+        self.cellRefer = ECellRefer_Height;
     }
     
     return NSMakeSize(cellWidth, cellHeight);
@@ -143,4 +151,6 @@
     
     return [super layoutAttributesForItemAtIndexPath:indexPath];
 }
+@synthesize cellRefer;
+
 @end

@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) NSUInteger totalCount;
 @property (assign, nonatomic) NSSize size;
 @property (assign, nonatomic) NSSize containerSize;
+@property (assign, nonatomic) ECellRefer cellRefer;
 
 - (void)updateElementSize:(NSSize)size;
 @end
