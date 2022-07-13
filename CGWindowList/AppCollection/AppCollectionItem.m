@@ -44,6 +44,10 @@
     
     NSString *appName = windowDict[(id)kCGWindowName];
     self.appName.stringValue = appName ?: @"";
+    if (!self.appName.stringValue.length) {
+        NSString *appParantName = windowDict[(id)kCGWindowOwnerName];
+        self.appName.stringValue = [NSString stringWithFormat:@"parent-%@", appParantName ?: @""];
+    }
 }
 
 - (NSImage *)imageFromCGImageRef:(CGImageRef)image {
