@@ -21,6 +21,7 @@ static int kNumberOfItemsInSection = 5;
 @property (strong) NSArray *_apps;
 @property (assign) NSUInteger maxAppNumbers;
 @property (assign) NSUInteger numPerpage;
+@property (assign) BOOL isCanRecord;
 @end
 
 @implementation AppSelecotorController
@@ -89,22 +90,120 @@ static int kNumberOfItemsInSection = 5;
     }];
     
     NSLog(@"应用信息个数:%ld", details.count);
-    NSArray *arrs = (__bridge NSArray*) CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly, kCGNullWindowID);
-    [arrs enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull windowDict, NSUInteger idx, BOOL * _Nonnull stop) {
+    NSArray *arrs = (__bridge NSArray*) CGWindowListCopyWindowInfo(kCGWindowListOptionAll, kCGNullWindowID);
+    for (NSDictionary *windowDict in arrs) {
         int layer = 0;
         CFNumberRef numberRef = (__bridge CFNumberRef) windowDict[(id) kCGWindowLayer];
         CFNumberGetValue(numberRef, kCFNumberSInt32Type, &layer);
-        
-        if (layer <10 ) {
-            [self.applications addObject:windowDict];
+        if (layer < 0) {
+            continue;
         }
         
+        NSString *windowName = windowDict[(id)kCGWindowName];
+        NSString *ownerName = windowDict[(id)kCGWindowOwnerName];
+        if (nil == ownerName){
+            continue;
+        }
+        
+        if (windowName.length == 0
+            || [windowName isEqualToString:@"Window"]) {
+            windowName = ownerName;
+        }
+        
+        if (layer == 18
+            && [windowName isEqualToString:@"Banners and Alerts"]) {
+            continue;
+        }
+        
+        if (layer == 23
+            && [windowName isEqualToString:@"Notification Center"]) {
+            continue;
+        }
+        
+        CGRect windowRect;
+        CGRectMakeWithDictionaryRepresentation((__bridge CFDictionaryRef)(windowDict[(id)kCGWindowBounds]), &windowRect);
+        
+        if (windowRect.size.height <= 100
+            && windowRect.size.width <= 100) {
+            continue;
+        }
+        
+        BOOL isOnScreen = [windowDict[(id)kCGWindowIsOnscreen] boolValue];
+        BOOL isFullScreenWindow = NO;
+        if (!isOnScreen) {
+            isFullScreenWindow = [self isFullScreenWindow:windowDict];
+            if (!isFullScreenWindow) {
+                NSLog(@"窗口不在屏幕上:%@, windowName=%@", ownerName, windowName);
+                continue;
+            } else {
+                
+            }
+        }
+        
+        CGWindowID windowId = [windowDict[(id)kCGWindowNumber] unsignedIntValue];
+        CGImageRef imgRef = CGWindowListCreateImage(CGRectNull, kCGWindowListOptionIncludingWindow, windowId, kCGWindowImageBoundsIgnoreFraming|kCGWindowImageNominalResolution);
+        if (!imgRef) {
+            if (isOnScreen) {
+                self.isCanRecord = NO;
+            }
+           // continue;
+        }
+        
+        if (isFullScreenWindow) {
+            if (CGImageGetWidth(imgRef) <= 100 || CGImageGetHeight(imgRef) <= 100) {
+                NSLog(@"抓取到全屏1*1窗口:%@, windowName=%@", ownerName, windowName);
+                CGImageRelease(imgRef);
+                continue;
+            }
+        }
+        
+        CGImageRelease(imgRef);
+        [self.applications addObject:windowDict];
+
         if (self.applications.count == self.maxAppNumbers) {
-            *stop = YES;
+            break;
         }
+    }
+    
+    [self.applications sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        NSInteger pid1 = [obj1[(id)kCGWindowOwnerPID] unsignedIntValue];
+        NSInteger pid2 = [obj2[(id)kCGWindowOwnerPID] unsignedIntValue];
+
+        return pid1 >= pid2;
     }];
     
     NSLog(@"有效的窗口个数:%ld, 详情：%@", self.applications.count, self.applications);
+}
+
+- (BOOL)isFullScreenWindow:(NSDictionary *)windowDict {
+    BOOL isFullScreenWindow = NO;
+
+    NSRect otherRect;
+    CGRectMakeWithDictionaryRepresentation((__bridge CFDictionaryRef)(windowDict[(id)kCGWindowBounds]), &otherRect);
+    otherRect = [[self class] cgWindowRectToScreenRect:otherRect];
+    for (NSScreen *screen in [NSScreen screens]) {
+        if (NSEqualRects(screen.frame, otherRect)) {
+            isFullScreenWindow = YES;
+            break;
+        }
+    }
+   
+    return isFullScreenWindow;
+}
+
++ (NSRect)cgWindowRectToScreenRect:(CGRect)windowRect {
+    NSRect mainRect = [NSScreen mainScreen].frame;
+    for (NSScreen *screen in [NSScreen screens]) {
+        if ((int) screen.frame.origin.x == 0 && (int) screen.frame.origin.y == 0) {
+            mainRect = screen.frame;
+        }
+    }
+    
+    NSRect rect = NSMakeRect(windowRect.origin.x,
+                             mainRect.size.height - (windowRect.size.height + windowRect.origin.y),
+                             windowRect.size.width,
+                             windowRect.size.height);
+    return rect;
 }
 
 - (NSString *)jsonStringFromObject:(id)object {

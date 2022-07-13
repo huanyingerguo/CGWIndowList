@@ -36,6 +36,7 @@
         CGWindowID windowID = (CGWindowID)[windowDict[(id)kCGWindowNumber] unsignedLongLongValue];
         CGImageRef cgImage = CGWindowListCreateImage(windowRect,  kCGWindowListOptionIncludingWindow, windowID, kCGWindowImageDefault);
         NSImage *image = [self imageFromCGImageRef:cgImage];
+        CGImageRelease(cgImage);
         dispatch_sync(dispatch_get_main_queue(), ^{
             self.imageView.image = image;
         });
@@ -44,7 +45,8 @@
     
     NSString *appName = windowDict[(id)kCGWindowName];
     self.appName.stringValue = appName ?: @"";
-    if (!self.appName.stringValue.length) {
+    if (!self.appName.stringValue.length
+        || [self.appName.stringValue isEqualToString:@"Window"]) {
         NSString *appParantName = windowDict[(id)kCGWindowOwnerName];
         self.appName.stringValue = [NSString stringWithFormat:@"parent-%@", appParantName ?: @""];
     }
