@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AppSelecotorController : NSViewController
 @property (assign) NSInteger curPage;
+@property (assign) NSInteger totalPage;
 @property (strong) NSMutableArray *applications;
 
 - (void)setNextPage;

@@ -89,12 +89,7 @@
 
 - (void)updateButtonState {
     NSUInteger appNums = self.seletor.applications.count;
-    NSUInteger pages =  appNums / 9;
-    if (appNums % 9) {
-        pages+1;
-    }
-    
-    self.pageLabel.stringValue = [NSString stringWithFormat:@"%ld/%ld", self.seletor.curPage + 1, pages + 1];
+    self.pageLabel.stringValue = [NSString stringWithFormat:@"%ld/%ld", self.seletor.curPage + 1, self.seletor.totalPage];
     self.maxAppNums.stringValue = @(appNums).stringValue;
     
     if (self.seletor.curPage <= 0 ) {
@@ -103,7 +98,7 @@
         self.preButton.enabled = YES;
     }
     
-    if (self.seletor.curPage >= pages ) {
+    if (self.seletor.curPage >= self.seletor.totalPage - 1 ) {
         self.nextButton.enabled = NO;
     } else {
         self.nextButton.enabled = YES;

@@ -12,7 +12,6 @@
 #import "CNCollectionViewFlowLayout.h"
 #import <Masonry/Masonry.h>
 
-static int kNumberOfItemsInSection = 5;
 
 @interface AppSelecotorController () <NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout>
 @property (weak) IBOutlet NSCollectionView *collectionView;
@@ -20,7 +19,7 @@ static int kNumberOfItemsInSection = 5;
 
 @property (strong) NSArray *_apps;
 @property (assign) NSUInteger maxAppNumbers;
-@property (assign) NSUInteger numPerpage;
+@property (assign) NSUInteger perPageSize;
 @property (assign) BOOL isCanRecord;
 @end
 
@@ -33,12 +32,12 @@ static int kNumberOfItemsInSection = 5;
     if (!_applications) {
         _applications = [NSMutableArray arrayWithCapacity:1];
     }
-    self.numPerpage = 9;
+    self.perPageSize = 9;
     [self initSubview];
 }
 
 - (void)setNextPage {
-    if ((self.curPage + 1) * self.numPerpage >= self.applications.count) {
+    if ((self.curPage + 1) * self.perPageSize >= self.applications.count) {
         return;
     }
     
@@ -61,9 +60,7 @@ static int kNumberOfItemsInSection = 5;
     [self getWindowsInfoOnScreens];
     if (@available(macOS 10.11, *)) {
         self.curPage = 0; //重新加载
-        self._apps = [self.applications copy]; //默认全部数据
-        [self updateLayout];
-        [self.collectionView reloadData];
+        [self reloadData];
     }
 }
 
@@ -228,8 +225,8 @@ static int kNumberOfItemsInSection = 5;
 
 - (NSInteger)collectionView:(NSCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     NSUInteger count = self._apps.count;
-    if (count > self.numPerpage) {
-        count = self.numPerpage;
+    if (count > self.perPageSize) {
+        count = self.perPageSize;
     }
     return count;
 }
@@ -257,18 +254,30 @@ static int kNumberOfItemsInSection = 5;
 
 - (void)refreshApps {
     NSUInteger count = self.applications.count;
-    if (count <= self.numPerpage) {
+    if (count <= self.perPageSize) {
+        self.curPage = 0;
+        self.totalPage = 1;
         self._apps = [self.applications copy];
         return;
     }
     
-    NSUInteger remainCnt = count - self.curPage * self.numPerpage;
-    NSUInteger length = self.numPerpage;
-    if (remainCnt < self.numPerpage) {
+    //计算总的页数
+    NSUInteger newPage = count / self.perPageSize;
+    if (count % self.perPageSize) {
+        newPage += 1;
+    }
+    self.totalPage = newPage;
+    
+    //校准当前页数
+    self.curPage = MIN(self.curPage, self.totalPage - 1);
+    
+    NSUInteger length = self.perPageSize;
+    NSUInteger remainCnt = count - self.curPage * self.perPageSize;
+    if (remainCnt < self.perPageSize) {
         length = remainCnt;
     }
     
-    self._apps = [self.applications subarrayWithRange:NSMakeRange(self.curPage * self.numPerpage, length)];
+    self._apps = [self.applications subarrayWithRange:NSMakeRange(self.curPage * self.perPageSize, length)];
 }
 
 - (void)updateLayout {
