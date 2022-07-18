@@ -8,6 +8,12 @@
 
 #import "CNCollectionViewGridLayout.h"
 
+@interface CNCollectionViewGridLayout()
+@property (assign, nonatomic) int rowCnt;
+@property (assign, nonatomic) int columnCnt;
+@property (assign, nonatomic) NSSize cellSize;
+@end
+
 @implementation CNCollectionViewGridLayout
 - (void)prepareLayout {
     self.minimumInteritemSpacing = 1;
@@ -22,6 +28,18 @@
     self.maximumItemSize = expectSize;
     
     self.size = expectSize;
+}
+
+- (NSSize)adaptivedContainerSize {
+    CGFloat cellWidth = self.cellSize.width;
+    CGFloat cellheight = self.cellSize.height;
+    if (self.cellRefer == ECellRefer_Height) {
+        cellWidth += 0.2;
+    } else if (self.cellRefer == ECellRefer_Width) {
+        cellheight += 0.2;
+    }
+    
+    return NSMakeSize(cellWidth * self.rowCnt + 4, cellheight * self.columnCnt + 4);
 }
 
 - (NSSize)_expectedCellSizeV0:(NSSize)size {
@@ -55,20 +73,25 @@
     if (self.totalCount == 1) {
         rowCnt = 1;
         columnCnt = 1;
+        self.subLayout = ESubLayout_1X1;
     } else if (self.totalCount == 2) {
         rowCnt = 2;
         columnCnt = 1;
+        self.subLayout = ESubLayout_1X2;
     } else if (self.totalCount == 3 ||
                self.totalCount == 4) {
         rowCnt = 2;
         columnCnt = 2;
+        self.subLayout = ESubLayout_2X2;
     } else if (self.totalCount == 5 ||
                self.totalCount == 6) {
         rowCnt = 3;
         columnCnt = 2;
+        self.subLayout = ESubLayout_2X3;
     } else {
         rowCnt = 3;
         columnCnt = 3;
+        self.subLayout = ESubLayout_3X3;
     }
     
     cellWidth = (size.width - rowCnt * self.minimumInteritemSpacing) * 1.0 / rowCnt;
@@ -83,7 +106,10 @@
         self.cellRefer = ECellRefer_Height;
     }
     
-    return NSMakeSize(cellWidth, cellHeight);
+    self.cellSize = NSMakeSize(cellWidth, cellHeight);
+    self.rowCnt = rowCnt;
+    self.columnCnt = columnCnt;
+    return self.cellSize;
 }
 
 - (void)setTotalCount:(NSUInteger)totalCount {

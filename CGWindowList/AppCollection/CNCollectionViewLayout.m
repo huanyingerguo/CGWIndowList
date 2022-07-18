@@ -17,6 +17,10 @@
 - (void)updateElementSize:(NSSize)size {
 }
 
+- (NSSize)adaptivedContainerSize {
+    return self.size;
+}
+
 - (void)setTotalCount:(NSUInteger)totalCount {
     _totalCount = totalCount;
 }

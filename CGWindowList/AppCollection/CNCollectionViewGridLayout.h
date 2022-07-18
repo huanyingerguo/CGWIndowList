@@ -16,8 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) NSSize size;
 @property (assign, nonatomic) NSSize containerSize;
 @property (assign, nonatomic) ECellRefer cellRefer;
+@property (assign, nonatomic) ESubLayout subLayout;
 
 - (void)updateElementSize:(NSSize)size;
+- (NSSize)adaptivedContainerSize;
 @end
 
 NS_ASSUME_NONNULL_END
