@@ -2,7 +2,7 @@
 //  CNCollectionViewLayout.m
 //  CGWindowList
 //
-//  Created by jinglin sun on 2022/6/24.
+//  Created by jinglin sun on 2022/7/14.
 //  Copyright © 2022 sunjinglin. All rights reserved.
 //
 
@@ -26,7 +26,7 @@
 }
 
 - (NSArray<__kindof NSCollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(NSRect)rect {
-    NSArray<NSCollectionViewLayoutAttributes *> *attrs = [[NSArray alloc]initWithArray:[super layoutAttributesForElementsInRect:rect] copyItems:YES];
+    NSArray<NSCollectionViewLayoutAttributes *> *attrs = [[NSArray alloc] initWithArray:[super layoutAttributesForElementsInRect:rect] copyItems:YES];
     
     for (NSCollectionViewLayoutAttributes *attr in attrs) {
         NSSize size = attr.frame.size;

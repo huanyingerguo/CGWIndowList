@@ -2,7 +2,7 @@
 //  CNCollectionViewGridLayout.h
 //  CGWindowList
 //
-//  Created by jinglin sun on 2022/6/26.
+//  Created by jinglin sun on 2022/7/14.
 //  Copyright © 2022 sunjinglin. All rights reserved.
 //
 
@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) ESubLayout subLayout;
 
 - (void)updateElementSize:(NSSize)size;
+//满足CELL制定Ratio比例要求下，反向调整容器的居中布局与对应展示尺寸（裁剪多余的宽高
 - (NSSize)adaptivedContainerSize;
 @end
 
