@@ -8,7 +8,7 @@
 
 #import "CNCollectionViewGridLayout.h"
 
-@interface CNCollectionViewGridLayout()
+@interface CNCollectionViewGridLayout ()
 @property (assign, nonatomic) int rowCnt;
 @property (assign, nonatomic) int columnCnt;
 @property (assign, nonatomic) NSSize cellSize;
@@ -16,8 +16,8 @@
 
 @implementation CNCollectionViewGridLayout
 - (void)prepareLayout {
-    self.minimumInteritemSpacing = 1;
-    self.minimumLineSpacing = 1;
+    self.minimumInteritemSpacing = 2;
+    self.minimumLineSpacing = 2;
     [super prepareLayout];
 }
 
@@ -31,15 +31,19 @@
 }
 
 - (NSSize)adaptivedContainerSize {
+    CGFloat horizontalSpacing = (self.rowCnt - 1) * self.minimumInteritemSpacing; //整体水平的间隔
+    CGFloat verticalSpacing = (self.columnCnt - 1) * self.minimumInteritemSpacing; //整体垂直的间隔
+
     CGFloat cellWidth = self.cellSize.width;
     CGFloat cellheight = self.cellSize.height;
     if (self.cellRefer == ECellRefer_Height) {
-        cellWidth += 0.2;
+        cellWidth += 0.5; //因为计算float数的时候，最后算出来的肯定是有省略的(一般是小数点后N位，N>=1)，故这里强制补充
     } else if (self.cellRefer == ECellRefer_Width) {
-        cellheight += 0.2;
+        cellheight += 0.5;
     }
     
-    return NSMakeSize(cellWidth * self.rowCnt + 4, cellheight * self.columnCnt + 4);
+    return NSMakeSize(cellWidth * self.rowCnt + horizontalSpacing,
+                      cellheight * self.columnCnt + verticalSpacing);
 }
 
 - (NSSize)_expectedCellSizeV0:(NSSize)size {
