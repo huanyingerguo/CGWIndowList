@@ -66,12 +66,29 @@
 
 -(void)initSubview{
     self.collectionView.enclosingScrollView.backgroundColor = [NSColor yellowColor];
-    self.collectionView.enclosingScrollView.verticalScroller.hidden = YES;
-    self.collectionView.enclosingScrollView.horizontalScroller.hidden = YES;
+#if 1
+    [self processCollectionViewEnclosingScrollView];
+#endif
     //[self.collectionView.enclosingScrollView setHorizontalScroller:nil];
     //[self.collectionView.enclosingScrollView setVerticalScroller:nil];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
+}
+
+- (void)processCollectionViewEnclosingScrollView {
+    NSScrollView *enclosingScrollView = self.collectionView.enclosingScrollView;
+    enclosingScrollView.horizontalScrollElasticity = NSScrollElasticityNone;
+    enclosingScrollView.verticalScrollElasticity = NSScrollElasticityNone;
+    enclosingScrollView.scrollerStyle = NSScrollerStyleOverlay;
+    
+    [enclosingScrollView setDrawsBackground:NO];
+    
+    //隐藏选中后，展示的灰白背景
+    enclosingScrollView.verticalScroller.hidden = YES;
+    enclosingScrollView.horizontalScroller.hidden = YES;
+    
+    [enclosingScrollView setHorizontalScroller:nil];
+    [enclosingScrollView setVerticalScroller:nil];
 }
 
 #pragma mark- Capture Application Views

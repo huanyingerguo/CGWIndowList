@@ -21,6 +21,8 @@
 		CA34750123CC8577004EBEBF /* AppSelectorWndController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3474FF23CC8577004EBEBF /* AppSelectorWndController.m */; };
 		CA34750223CC8577004EBEBF /* AppSelectorWndController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA34750023CC8577004EBEBF /* AppSelectorWndController.xib */; };
 		EA292F39D11B657AF2428F46 /* libPods-CGWindowList.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EF6AEE28E33253307A4254E /* libPods-CGWindowList.a */; };
+		F91C2C2B2897FAE60092B9B6 /* CNCustomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = F91C2C292897FAE50092B9B6 /* CNCustomScrollView.m */; };
+		F91C2C2C2897FAE60092B9B6 /* CNCustomScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = F91C2C2A2897FAE60092B9B6 /* CNCustomScroller.m */; };
 		F98059162865AC5A004B1505 /* CNCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F98059152865AC5A004B1505 /* CNCollectionViewLayout.m */; };
 		F980592D28678507004B1505 /* CNCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F980592C28678507004B1505 /* CNCollectionViewFlowLayout.m */; };
 		F980593328678591004B1505 /* CNCollectionViewGridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F980593228678591004B1505 /* CNCollectionViewGridLayout.m */; };
@@ -72,6 +74,10 @@
 		CA3474FE23CC8577004EBEBF /* AppSelectorWndController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppSelectorWndController.h; sourceTree = "<group>"; };
 		CA3474FF23CC8577004EBEBF /* AppSelectorWndController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppSelectorWndController.m; sourceTree = "<group>"; };
 		CA34750023CC8577004EBEBF /* AppSelectorWndController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppSelectorWndController.xib; sourceTree = "<group>"; };
+		F91C2C272897FAE50092B9B6 /* CNCustomScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CNCustomScroller.h; path = Controller/CNCustomScroller.h; sourceTree = "<group>"; };
+		F91C2C282897FAE50092B9B6 /* CNCustomScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CNCustomScrollView.h; path = Controller/CNCustomScrollView.h; sourceTree = "<group>"; };
+		F91C2C292897FAE50092B9B6 /* CNCustomScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CNCustomScrollView.m; path = Controller/CNCustomScrollView.m; sourceTree = "<group>"; };
+		F91C2C2A2897FAE60092B9B6 /* CNCustomScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CNCustomScroller.m; path = Controller/CNCustomScroller.m; sourceTree = "<group>"; };
 		F98059142865AC5A004B1505 /* CNCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNCollectionViewLayout.h; sourceTree = "<group>"; };
 		F98059152865AC5A004B1505 /* CNCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNCollectionViewLayout.m; sourceTree = "<group>"; };
 		F980592B28678507004B1505 /* CNCollectionViewFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNCollectionViewFlowLayout.h; sourceTree = "<group>"; };
@@ -148,6 +154,7 @@
 		CA31DD5223C7453F007AF2A9 /* CGWindowList */ = {
 			isa = PBXGroup;
 			children = (
+				F91C2C262897FAD70092B9B6 /* Controller */,
 				CA3474F823CC6960004EBEBF /* AppCollection */,
 				CA31DD5323C7453F007AF2A9 /* AppDelegate.h */,
 				CA31DD5423C7453F007AF2A9 /* AppDelegate.m */,
@@ -200,6 +207,17 @@
 				F980593228678591004B1505 /* CNCollectionViewGridLayout.m */,
 			);
 			path = AppCollection;
+			sourceTree = "<group>";
+		};
+		F91C2C262897FAD70092B9B6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F91C2C272897FAE50092B9B6 /* CNCustomScroller.h */,
+				F91C2C2A2897FAE60092B9B6 /* CNCustomScroller.m */,
+				F91C2C282897FAE50092B9B6 /* CNCustomScrollView.h */,
+				F91C2C292897FAE50092B9B6 /* CNCustomScrollView.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA3474F623CC6701004EBEBF /* AppSelecotorController.m in Sources */,
+				F91C2C2B2897FAE60092B9B6 /* CNCustomScrollView.m in Sources */,
 				CA31DD5823C7453F007AF2A9 /* ViewController.m in Sources */,
 				F980593328678591004B1505 /* CNCollectionViewGridLayout.m in Sources */,
 				CA3474FC23CC698C004EBEBF /* AppCollectionItem.m in Sources */,
@@ -369,6 +388,7 @@
 				F980592D28678507004B1505 /* CNCollectionViewFlowLayout.m in Sources */,
 				CA31DD5523C7453F007AF2A9 /* AppDelegate.m in Sources */,
 				F98059162865AC5A004B1505 /* CNCollectionViewLayout.m in Sources */,
+				F91C2C2C2897FAE60092B9B6 /* CNCustomScroller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

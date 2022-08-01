@@ -37,9 +37,9 @@
     CGFloat cellWidth = self.cellSize.width;
     CGFloat cellheight = self.cellSize.height;
     if (self.cellRefer == ECellRefer_Height) {
-        cellWidth += 0.5; //因为计算float数的时候，最后算出来的肯定是有省略的(一般是小数点后N位，N>=1)，故这里强制补充
+        cellWidth += 1; //因为计算float数的时候，最后算出来的肯定是有省略的(一般是小数点后N位，N>=1)，故这里强制补充
     } else if (self.cellRefer == ECellRefer_Width) {
-        cellheight += 0.5;
+        cellheight += 1;
     }
     
     return NSMakeSize(cellWidth * self.rowCnt + horizontalSpacing,
@@ -137,9 +137,9 @@
     for (NSCollectionViewLayoutAttributes *attr in attrs) {
         NSSize size = attr.frame.size;
         long height = size.height;
-        if (!NSEqualSizes(self.size, NSZeroSize) &&
-            self.totalCount >= 9) {
-            height = self.size.height;
+        if (!NSEqualSizes(self.cellSize, NSZeroSize) &&
+            self.totalCount >= 1) {
+            height = self.cellSize.height;
         }
         
         NSPoint point = attr.frame.origin;
