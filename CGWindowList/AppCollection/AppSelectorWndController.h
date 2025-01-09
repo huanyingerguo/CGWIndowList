@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AppSelectorWndController : NSWindowController
 @property (weak) NSWindow *hostWindow;
+
+- (NSArray *)applicaitons;
 @end
 
 NS_ASSUME_NONNULL_END

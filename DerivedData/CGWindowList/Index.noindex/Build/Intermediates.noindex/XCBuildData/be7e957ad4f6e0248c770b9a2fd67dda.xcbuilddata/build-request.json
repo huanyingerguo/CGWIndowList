@@ -1,0 +1,73 @@
+{
+  "buildCommand" : {
+    "command" : "prepareForIndexing",
+    "enableIndexBuildArena" : true,
+    "targets" : null
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "4d686294125fb21be2262b1f2d96b8a2b9994aa8d308bf818bfbf8535ed00039"
+    },
+    {
+      "guid" : "4d686294125fb21be2262b1f2d96b8a279fdf1f30ce03514e8ab5d7ade94828b"
+    },
+    {
+      "guid" : "4d686294125fb21be2262b1f2d96b8a272a305507106d246a37d8ba5b1bf1f73"
+    },
+    {
+      "guid" : "8699adb1dd336b26511df848a716bd42e3be389a010182c334a5c542b48f8dc5"
+    },
+    {
+      "guid" : "8699adb1dd336b26511df848a716bd428c0b53ccb4a58ef86cc87ea9bcb16745"
+    }
+  ],
+  "containerPath" : "/Users/sunjinglin/Documents/Allcode/Git/CGWIndowList/CGWindowList.xcworkspace",
+  "continueBuildingAfterErrors" : true,
+  "dependencyScope" : "workspace",
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "indexbuild",
+    "activeArchitecture" : "arm64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "macosx",
+      "sdk" : "macosx14.5",
+      "sdkVariant" : "macos",
+      "supportedArchitectures" : [
+        "arm64e",
+        "arm64",
+        "x86_64"
+      ],
+      "targetArchitecture" : "arm64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/sunjinglin/Documents/Allcode/Git/CGWIndowList/DerivedData/CGWindowList/Index.noindex/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/sunjinglin/Documents/Allcode/Git/CGWIndowList/DerivedData/CGWindowList/Index.noindex/Build/Products",
+      "derivedDataPath" : "/Users/sunjinglin/Documents/Allcode/Git/CGWIndowList/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/sunjinglin/Documents/Allcode/Git/CGWIndowList/DerivedData/CGWindowList/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/sunjinglin/Documents/Allcode/Git/CGWIndowList/DerivedData/CGWindowList/Index.noindex/PrecompiledHeaders",
+      "indexRegularBuildIntermediatesPath" : "/Users/sunjinglin/Documents/Allcode/Git/CGWIndowList/DerivedData/CGWindowList/Build/Intermediates.noindex",
+      "indexRegularBuildProductsPath" : "/Users/sunjinglin/Documents/Allcode/Git/CGWIndowList/DerivedData/CGWindowList/Build/Products",
+      "pchPath" : "/Users/sunjinglin/Documents/Allcode/Git/CGWIndowList/DerivedData/CGWindowList/Index.noindex/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO",
+          "ENABLE_XOJIT_PREVIEWS" : "NO",
+          "ONLY_ACTIVE_ARCH" : "YES"
+        }
+      }
+    }
+  },
+  "qos" : "utility",
+  "schemeCommand" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

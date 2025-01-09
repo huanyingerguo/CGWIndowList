@@ -8,9 +8,11 @@
 
 #import "AppDelegate.h"
 #import "AppSelectorWndController.h"
+#import "SystemInfoFetcher.h"
 
 @interface AppDelegate ()
 @property (strong) AppSelectorWndController *windCtrl;
+@property (strong, nonatomic) SystemInfoFetcher *fetcher;
 @end
 
 @implementation AppDelegate
@@ -20,6 +22,8 @@
 //    self.windCtrl = [[AppSelectorWndController alloc] initWithWindowNibName:@"AppSelectorWndController"];
 //    [self.windCtrl.window center];
 //    [self.windCtrl showWindow:nil];
+//    self.fetcher = [[SystemInfoFetcher alloc] init];
+//    [self.fetcher startFetchingAppInfoForAppName:@"Google Chrome"];
 }
 
 

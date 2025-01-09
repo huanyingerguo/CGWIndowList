@@ -11,6 +11,7 @@
 
 @interface ViewController()
 @property (strong) AppSelectorWndController *selecotor;
+@property (weak) IBOutlet NSTextField *output;
 
 @end
 
@@ -21,9 +22,13 @@
 
     // Do any additional setup after loading the view.
     //[self.selecotor.window center];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [self onDisplayBtnClicked:nil];
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+//        [self onDisplayBtnClicked:nil];
+//    });
+//    
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 7*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+//        [self onDisplayBtnClicked:nil];
+//    });
 }
 
 
@@ -34,7 +39,7 @@
 }
 
 - (IBAction)onDisplayBtnClicked:(id)sender {
-    if (!self.selecotor) {
+    if (self.selecotor) {
         [self.selecotor close];
         self.selecotor = nil;
     }
@@ -42,5 +47,12 @@
     
     [self.selecotor.window center];
     [self.selecotor showWindow:nil];
+    
+    __weak ViewController* weak_self = self;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            __strong ViewController* self = weak_self;
+            NSString *result = [[self.selecotor applicaitons] description];
+            self.output.stringValue = result;
+        });
 }
 @end

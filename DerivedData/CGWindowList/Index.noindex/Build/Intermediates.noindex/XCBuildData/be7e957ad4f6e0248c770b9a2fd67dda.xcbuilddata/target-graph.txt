@@ -1,0 +1,11 @@
+Target dependency graph (5 targets)
+Target 'CGWindowListUITests' in project 'CGWindowList'
+➜ Explicit dependency on target 'CGWindowList' in project 'CGWindowList'
+Target 'CGWindowListTests' in project 'CGWindowList'
+➜ Explicit dependency on target 'CGWindowList' in project 'CGWindowList'
+Target 'CGWindowList' in project 'CGWindowList'
+➜ Implicit dependency on target 'Pods-CGWindowList' in project 'Pods' via file 'libPods-CGWindowList.a' in build phase 'Link Binary'
+➜ Implicit dependency on target 'Masonry' in project 'Pods' via options '-lMasonry' in build setting 'OTHER_LDFLAGS'
+Target 'Pods-CGWindowList' in project 'Pods'
+➜ Explicit dependency on target 'Masonry' in project 'Pods'
+Target 'Masonry' in project 'Pods' (no dependencies)

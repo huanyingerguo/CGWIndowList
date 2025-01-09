@@ -104,8 +104,11 @@
     }];
     
     NSLog(@"应用信息个数:%ld", details.count);
-    NSArray *arrs = (__bridge NSArray*) CGWindowListCopyWindowInfo(kCGWindowListOptionAll, kCGNullWindowID);
+    NSArray *arrs = (__bridge NSArray*) CGWindowListCopyWindowInfo(kCGWindowListOptionAll | kCGWindowListOptionOnScreenOnly | kCGWindowListExcludeDesktopElements, kCGNullWindowID);
+    NSLog(@"窗口个数:%ld", arrs.count);
+    int i = 0;
     for (NSDictionary *windowDict in arrs) {
+        i++;
         int layer = 0;
         CFNumberRef numberRef = (__bridge CFNumberRef) windowDict[(id) kCGWindowLayer];
         CFNumberGetValue(numberRef, kCFNumberSInt32Type, &layer);
@@ -117,6 +120,27 @@
         NSString *ownerName = windowDict[(id)kCGWindowOwnerName];
         if (nil == ownerName){
             continue;
+        }
+        
+        CGRect windowRect;
+        CGRectMakeWithDictionaryRepresentation((__bridge CFDictionaryRef)(windowDict[(id)kCGWindowBounds]), &windowRect);
+        
+        if (windowRect.size.height <= 100
+            && windowRect.size.width <= 100) {
+            continue;
+        }
+        
+        NSNumber *pid = windowDict[(id)kCGWindowOwnerPID];
+        if ([ownerName isEqualToString:@"Microsoft PowerPoint"]
+            && windowRect.size.height >= 760) {
+            NSLog(@"找到PPT: windowRect=%@", windowRect);
+        }
+        
+        if ([ownerName isEqualToString:@"Keynote"]
+            && windowRect.size.height >= 760) {
+            NSLog(@"找到keyNote");
+        }else {
+           // continue;
         }
         
         if (windowName.length == 0
@@ -134,14 +158,6 @@
             continue;
         }
         
-        CGRect windowRect;
-        CGRectMakeWithDictionaryRepresentation((__bridge CFDictionaryRef)(windowDict[(id)kCGWindowBounds]), &windowRect);
-        
-        if (windowRect.size.height <= 100
-            && windowRect.size.width <= 100) {
-            continue;
-        }
-        
         BOOL isOnScreen = [windowDict[(id)kCGWindowIsOnscreen] boolValue];
         BOOL isFullScreenWindow = NO;
         if (!isOnScreen) {
@@ -149,8 +165,6 @@
             if (!isFullScreenWindow) {
                 NSLog(@"窗口不在屏幕上:%@, windowName=%@", ownerName, windowName);
                 continue;
-            } else {
-                
             }
         }
         
@@ -160,33 +174,58 @@
             if (isOnScreen) {
                 self.isCanRecord = NO;
             }
-           // continue;
+            continue;
         }
         
         if (isFullScreenWindow) {
-            if (CGImageGetWidth(imgRef) <= 100 || CGImageGetHeight(imgRef) <= 100) {
+            if (CGImageGetWidth(imgRef) <= 300 || CGImageGetHeight(imgRef) <= 300) {
                 NSLog(@"抓取到全屏1*1窗口:%@, windowName=%@", ownerName, windowName);
                 CGImageRelease(imgRef);
                 continue;
             }
         }
         
+        NSRunningApplication *runApp = [NSRunningApplication runningApplicationWithProcessIdentifier:pid.intValue];
+        if(nil == runApp.icon) {
+            continue;  //过滤掉获取不到图标的 或者quick Time 的录屏功能
+        }
+        
         CGImageRelease(imgRef);
-        [self.applications addObject:windowDict];
 
+//        if ([self isFullScreenWindow:windowDict]) {
+//            [self.applications addObject:windowDict];
+//        }
+        
+        [self.applications addObject:windowDict];
+        
         if (self.applications.count == self.maxAppNumbers) {
             break;
         }
     }
     
-    [self.applications sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-        NSInteger pid1 = [obj1[(id)kCGWindowOwnerPID] unsignedIntValue];
-        NSInteger pid2 = [obj2[(id)kCGWindowOwnerPID] unsignedIntValue];
-
-        return pid1 >= pid2;
-    }];
+//    [self.applications sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+//        NSString *app1 = obj1[(id)kCGWindowOwnerName];
+//        NSString *app2 = obj2[(id)kCGWindowOwnerName];
+//
+//        return [app1 compare:app2];
+//
+////        NSInteger pid1 = [obj1[(id)kCGWindowOwnerPID] unsignedIntValue];
+////        NSInteger pid2 = [obj2[(id)kCGWindowOwnerPID] unsignedIntValue];
+////
+////        return pid1 >= pid2;
+//    }];
     
     NSLog(@"有效的窗口个数:%ld, 详情：%@", self.applications.count, self.applications);
+}
+
+- (BOOL)isExpectedAPPs:(NSDictionary *)windowDict {
+    NSString *ownerName = windowDict[(id)kCGWindowOwnerName];
+    if ([ownerName isEqualToString:@"Microsoft PowerPoint"]
+        || [ownerName isEqualToString:@"Keynote"]) {
+        return YES;
+    }
+    
+    return NO;
 }
 
 - (BOOL)isFullScreenWindow:(NSDictionary *)windowDict {

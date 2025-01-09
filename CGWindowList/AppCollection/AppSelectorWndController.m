@@ -58,6 +58,10 @@
     return num;
 }
 
+- (NSArray *)applicaitons {
+    return self.seletor.applications;
+}
+
 #pragma mark- Window Delegate
 - (void)windowDidResize:(NSNotification *)notification {
     [self.seletor updateLayout];

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22690"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -50,7 +50,7 @@
                             <action selector="onCancelClicked:" target="-2" id="P4O-Ow-Udc"/>
                         </connections>
                     </button>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qvW-i3-wb3">
+                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qvW-i3-wb3">
                         <rect key="frame" x="743" y="10" width="80" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="cKl-2k-iSv"/>
@@ -64,33 +64,33 @@
                     </textField>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z9c-dd-b1I">
                         <rect key="frame" x="665" y="3" width="75" height="32"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="c1K-tK-bju"/>
-                            <constraint firstAttribute="width" constant="61" id="wJO-cj-kTM"/>
-                        </constraints>
                         <buttonCell key="cell" type="push" title="下一页" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kz6-5L-yvy">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="c1K-tK-bju"/>
+                            <constraint firstAttribute="width" constant="61" id="wJO-cj-kTM"/>
+                        </constraints>
                         <connections>
                             <action selector="onNextClicked:" target="-2" id="Ufu-4D-pqi"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jUM-Cv-CaR">
                         <rect key="frame" x="527" y="3" width="75" height="32"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="4Zv-eB-XRr"/>
-                            <constraint firstAttribute="width" constant="61" id="OFQ-7o-4q3"/>
-                        </constraints>
                         <buttonCell key="cell" type="push" title="前一页" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="K8q-OX-sQP">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="4Zv-eB-XRr"/>
+                            <constraint firstAttribute="width" constant="61" id="OFQ-7o-4q3"/>
+                        </constraints>
                         <connections>
                             <action selector="onPrevClicked:" target="-2" id="SQn-Uo-dji"/>
                         </connections>
                     </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PHs-Jw-TcO">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PHs-Jw-TcO">
                         <rect key="frame" x="618" y="12" width="44" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="htA-b4-7cj"/>

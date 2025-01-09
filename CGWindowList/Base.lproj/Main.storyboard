@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22690"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -710,7 +710,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1034" height="477"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3iM-UT-bwD">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3iM-UT-bwD">
                                 <rect key="frame" x="18" y="441" width="71" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="运行中应用" id="dMS-il-9jW">
                                     <font key="font" metaFont="system"/>
@@ -718,7 +718,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Chh-eb-ioL">
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Chh-eb-ioL">
                                 <rect key="frame" x="97" y="435" width="153" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="YPw-9T-IJX"/>
@@ -730,7 +730,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cTs-sa-F60">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cTs-sa-F60">
                                 <rect key="frame" x="258" y="441" width="84" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="屏幕窗口信息" id="ERb-DK-fPg">
                                     <font key="font" metaFont="system"/>
@@ -738,7 +738,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wgp-Ms-ERR">
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wgp-Ms-ERR">
                                 <rect key="frame" x="350" y="435" width="136" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="j8o-bD-gS7"/>
@@ -750,8 +750,20 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField focusRingType="none" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s71-gc-uYH">
+                                <rect key="frame" x="0.0" y="0.0" width="1034" height="425"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="425" id="1xA-V4-ksg"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="charWrapping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="323,423" drawsBackground="YES" allowsEditingTextAttributes="YES" id="jKB-BH-Q6U">
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="R5J-Dq-saw"/>
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="v5s-TN-0hY">
-                                <rect key="frame" x="930" y="14" width="91" height="32"/>
+                                <rect key="frame" x="930" y="430" width="91" height="32"/>
                                 <buttonCell key="cell" type="push" title=" 抓取应用" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zqe-qF-517">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -762,15 +774,19 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="v5s-TN-0hY" secondAttribute="trailing" constant="20" symbolic="YES" id="3Zx-1I-heb"/>
+                            <constraint firstItem="s71-gc-uYH" firstAttribute="width" secondItem="m2S-Jp-Qdl" secondAttribute="width" id="1vl-jL-jqh"/>
                             <constraint firstItem="wgp-Ms-ERR" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="3ul-6b-DQj"/>
                             <constraint firstItem="3iM-UT-bwD" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="69w-9V-Hbd"/>
+                            <constraint firstItem="s71-gc-uYH" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="7sC-ob-LuG"/>
                             <constraint firstItem="cTs-sa-F60" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="Cbd-VO-9vA"/>
                             <constraint firstItem="Chh-eb-ioL" firstAttribute="leading" secondItem="3iM-UT-bwD" secondAttribute="trailing" constant="10" id="Daf-jB-mE1"/>
-                            <constraint firstAttribute="bottom" secondItem="v5s-TN-0hY" secondAttribute="bottom" constant="21" id="Fwt-gE-yfO"/>
+                            <constraint firstItem="v5s-TN-0hY" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="Fwt-gE-yfO"/>
+                            <constraint firstItem="s71-gc-uYH" firstAttribute="top" secondItem="Chh-eb-ioL" secondAttribute="bottom" constant="10" symbolic="YES" id="GNi-VW-Zv2"/>
                             <constraint firstItem="wgp-Ms-ERR" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="NBt-c7-2Ct"/>
                             <constraint firstItem="cTs-sa-F60" firstAttribute="leading" secondItem="Chh-eb-ioL" secondAttribute="trailing" constant="10" id="OXl-xi-al5"/>
+                            <constraint firstItem="v5s-TN-0hY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wgp-Ms-ERR" secondAttribute="trailing" constant="8" symbolic="YES" id="OoC-Fj-6HN"/>
                             <constraint firstItem="Chh-eb-ioL" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="R9r-Zj-QdJ"/>
+                            <constraint firstItem="v5s-TN-0hY" firstAttribute="trailing" secondItem="m2S-Jp-Qdl" secondAttribute="trailing" constant="-20" id="Rm5-hP-2iw"/>
                             <constraint firstItem="wgp-Ms-ERR" firstAttribute="leading" secondItem="cTs-sa-F60" secondAttribute="trailing" constant="10" id="pXT-p3-mhL"/>
                             <constraint firstItem="3iM-UT-bwD" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="twV-7q-2yR"/>
                         </constraints>
@@ -779,6 +795,7 @@
                         <outlet property="NSButton" destination="v5s-TN-0hY" id="Spx-iN-nrr"/>
                         <outlet property="applications" destination="wgp-Ms-ERR" id="slb-7y-lUl"/>
                         <outlet property="displayBtn" destination="v5s-TN-0hY" id="sT9-IK-2WR"/>
+                        <outlet property="output" destination="s71-gc-uYH" id="Is3-2q-5tv"/>
                         <outlet property="windInfo" destination="Chh-eb-ioL" id="vMa-Fb-hMm"/>
                     </connections>
                 </viewController>
